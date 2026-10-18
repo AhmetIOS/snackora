@@ -4,7 +4,7 @@ import { SlotLabel } from "@/components/ui/slot-label";
 
 export function ValueProps() {
   return (
-    <section aria-labelledby="value-title" className="py-20 sm:py-28">
+    <section aria-labelledby="value-title" className="pt-10 pb-20 sm:pt-14 sm:pb-28 lg:pt-6">
       <div className="container-site grid gap-12 lg:grid-cols-12 lg:gap-8">
         <div className="lg:col-span-5">
           <div className="lg:sticky lg:top-[calc(var(--header-h)+3rem)]">

@@ -13,6 +13,8 @@ const WIN = { x: 48, y: 118, w: 238 };
 
 interface MachineProps {
   className?: string;
+  /** Render as a nested <svg> at 0,0 (400×760 units) inside another SVG. */
+  nested?: boolean;
   /** Accessible label. Pass `decorative` when the image is described nearby. */
   title?: string;
   decorative?: boolean;
@@ -28,6 +30,7 @@ function Shell({
   screen,
   tray,
   display,
+  nested,
 }: MachineProps & { children: ReactNode; cold?: boolean; screen?: boolean; tray?: ReactNode; display?: string }) {
   const tileSize = 46;
   const ws = 148 / WORDMARK.width;
@@ -39,6 +42,7 @@ function Shell({
   return (
     <svg
       viewBox={`0 0 ${VB_W} ${VB_H}`}
+      {...(nested ? { x: 0, y: 0, width: VB_W, height: VB_H } : {})}
       className={className}
       role={decorative ? undefined : "img"}
       aria-hidden={decorative ? true : undefined}
@@ -201,10 +205,10 @@ const drinkRows: { row: string; items: Item[] }[] = [
   },
 ];
 
-export function SnackMachine({ className, title = "Illustration eines Snackora-Snackautomaten", decorative, animated }: MachineProps) {
+export function SnackMachine({ className, title = "Illustration eines Snackora-Snackautomaten", decorative, animated, nested }: MachineProps) {
   const rowH = 440 / 6;
   return (
-    <Shell className={className} title={title} decorative={decorative}>
+    <Shell className={className} title={title} decorative={decorative} nested={nested}>
       {snackRows.map((r, i) => (
         <Row
           key={r.row}

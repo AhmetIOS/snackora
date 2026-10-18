@@ -34,11 +34,11 @@ export function Header() {
   ];
 
   return (
-    <header className="site-header sticky top-0 z-50 border-b border-transparent bg-cream/90 backdrop-blur-md transition-[border-color,background-color] duration-300 supports-[backdrop-filter]:bg-cream/80">
+    <header className="site-header surface-dark sticky top-0 z-50 border-b border-transparent bg-forest text-cream transition-[border-color,box-shadow] duration-300">
       <ScrollState />
       <div className="container-site flex h-[var(--header-h)] items-center justify-between gap-6">
         <Link href="/" className="-m-2 shrink-0 rounded-key p-2" aria-label="Snackora – zur Startseite">
-          <Logo className="h-7 w-auto sm:h-8" title="Snackora" />
+          <Logo variant="reversed" className="h-7 w-auto sm:h-8" title="Snackora" />
         </Link>
 
         <nav aria-label="Hauptnavigation" className="hidden lg:block">
@@ -47,7 +47,7 @@ export function Header() {
 
         <div className="flex items-center gap-2">
           <div className="hidden sm:block">
-            <ButtonLink href={primaryCta.href} size="md">
+            <ButtonLink href={primaryCta.href} variant="accent" size="md">
               {primaryCta.label}
             </ButtonLink>
           </div>

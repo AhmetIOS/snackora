@@ -59,7 +59,6 @@ async function MachinePageContent({ params }: { params: Promise<{ slug: string }
   return (
     <>
       <section className="surface-dark relative overflow-hidden bg-forest text-cream">
-        <div className="bg-rails-dark pointer-events-none absolute inset-0" />
         <div className="container-site relative pt-8 sm:pt-10">
           <Breadcrumbs
             tone="dark"

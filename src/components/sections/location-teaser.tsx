@@ -6,7 +6,6 @@ import { SlotLabel } from "@/components/ui/slot-label";
 export function LocationTeaser() {
   return (
     <section aria-labelledby="location-title" className="relative overflow-hidden bg-lime py-20 sm:py-28">
-      <div className="bg-rails pointer-events-none absolute inset-0 opacity-80" />
       <div className="container-site relative grid gap-12 lg:grid-cols-12 lg:gap-10">
         <div className="lg:col-span-6">
           <SlotLabel className="text-ink/70">
