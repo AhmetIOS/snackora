@@ -21,7 +21,7 @@ const STAGE = {
 
 export function MachineLineup({
   heading = "Vier Konzepte. Eine Frage: Was passt zu Ihnen?",
-  intro = "Snacks, gekühlte Getränke, beides aus einem Gerät oder frischer Kaffee – welcher Automat sinnvoll ist, hängt von Ihrem Standort ab. Ein erster Überblick:",
+  intro = "Snacks, gekühlte Getränke, frischer Kaffee oder Snacks und Getränke aus einem Gerät – welcher Automat sinnvoll ist, hängt von Ihrem Standort ab. Ein erster Überblick:",
   showOverviewLink = true,
   headingLevel = "h2",
 }: {

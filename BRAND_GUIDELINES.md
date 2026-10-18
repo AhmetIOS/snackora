@@ -161,7 +161,7 @@ Avoid: gradients, glows, floating shapes, glassmorphism, emoji, pill-shaped ever
 
 ## 8. Imagery
 
-**Current state:** bespoke vector illustrations of the four Snackora machine concepts (snack, drink, combo, coffee), each with an oversized product still-life on its own colour stage (lime, light blue, sand, latte), plus the wrap concept, always captioned as *Illustration / Designkonzept*. No stock photography is used.
+**Current state:** bespoke vector illustrations of the four Snackora machine concepts (snack, drink, coffee, combo), each with an oversized product still-life on its own colour stage (lime, light blue, latte, sand), plus the wrap concept, always captioned as *Illustration / Designkonzept*. No stock photography is used.
 
 **Photography** can be added per slot in `src/content/media.ts`. It replaces the illustration and is captioned automatically. Rules:
 

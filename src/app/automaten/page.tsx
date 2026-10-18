@@ -10,7 +10,7 @@ import { SlotLabel } from "@/components/ui/slot-label";
 import { pageMetadata } from "@/lib/seo/metadata";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Automatenlösungen: Snack-, Getränke-, Kombi- & Kaffeeautomaten",
+  title: "Automatenlösungen: Snack-, Getränke-, Kaffee- & Kombiautomaten",
   description:
     "Snackautomaten, Getränkeautomaten und Kombiautomaten für Unternehmen und Standorte in Esslingen, Stuttgart und Umgebung – welcher Automat passt zu Ihnen?",
   path: "/automaten",
@@ -71,7 +71,7 @@ export default function AutomatenPage() {
         crumbs={[{ name: "Automaten", href: "/automaten" }]}
         eyebrow="Automatenlösungen"
         title="Der passende Automat für Ihren Standort."
-        lead="Snacks, gekühlte Getränke, beides aus einem Gerät oder frisch zubereiteter Kaffee: Welche Lösung sinnvoll ist, hängt von Ihren Räumen, Ihren Arbeitszeiten und den Menschen vor Ort ab. Hier finden Sie einen ersten Überblick."
+        lead="Snacks, gekühlte Getränke, frisch zubereiteter Kaffee oder Snacks und Getränke aus einem Gerät: Welche Lösung sinnvoll ist, hängt von Ihren Räumen, Ihren Arbeitszeiten und den Menschen vor Ort ab. Hier finden Sie einen ersten Überblick."
       >
         <div className="flex flex-col gap-3 xs:flex-row">
           <ButtonLink href="/anfrage" size="lg">

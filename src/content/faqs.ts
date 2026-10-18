@@ -21,7 +21,7 @@ export const faqs: Faq[] = [
     id: "loesungen",
     question: "Welche Automatenlösungen bietet Snackora an?",
     answer: [
-      "Wir planen vier Automatenkonzepte: Snackautomaten, Getränkeautomaten, Kombiautomaten, die Snacks und gekühlte Getränke in einem Gerät vereinen, sowie Kaffeeautomaten für frisch zubereitete Heißgetränke. Welche Lösung passt, hängt von Ihrem Standort, dem verfügbaren Platz und der Zahl der Menschen vor Ort ab.",
+      "Wir planen vier Automatenkonzepte: Snackautomaten, Getränkeautomaten, Kaffeeautomaten für frisch zubereitete Heißgetränke sowie Kombiautomaten, die Snacks und gekühlte Getränke in einem Gerät vereinen. Welche Lösung passt, hängt von Ihrem Standort, dem verfügbaren Platz und der Zahl der Menschen vor Ort ab.",
       "Perspektivisch sind auch weitere Selbstbedienungslösungen denkbar, etwa kleine 24/7-Verkaufspunkte. Sprechen Sie uns gern an, wenn Sie etwas Bestimmtes suchen.",
     ],
     home: true,

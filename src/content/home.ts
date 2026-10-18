@@ -13,7 +13,7 @@ export const hero = {
   region: ["Region Stuttgart", "Esslingen", "Waiblingen"],
 };
 
-export const offerStrip = ["Snackautomaten", "Getränkeautomaten", "Kombiautomaten", "Kaffeeautomaten", "Standortpartnerschaften"];
+export const offerStrip = ["Snackautomaten", "Getränkeautomaten", "Kaffeeautomaten", "Kombiautomaten", "Standortpartnerschaften"];
 
 export const valueProps = [
   {

@@ -69,7 +69,7 @@ All variables are documented in [.env.example](.env.example).
 | --- | --- |
 | **Legal & contact data** (address, e-mail, phone, VAT ID, mailbox provider, review flag) | `src/config/business.ts` |
 | Navigation, sitemap routes, default SEO text | `src/config/site.ts` |
-| Machine categories – currently 4: Snack, Getränke, Kombi, Kaffee (creates `/automaten/[slug]` pages) | `src/content/machines.ts` |
+| Machine categories – currently 4: Snack, Getränke, Kaffee, Kombi (creates `/automaten/[slug]` pages) | `src/content/machines.ts` |
 | FAQs (homepage preview via `home: true`) | `src/content/faqs.ts` |
 | Homepage copy, process steps, use cases | `src/content/home.ts` |
 | Form fields and option lists | `src/components/forms/form-configs.ts`, `src/lib/inquiry/options.ts` |

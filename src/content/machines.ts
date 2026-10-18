@@ -209,93 +209,6 @@ export const machines: MachineCategory[] = [
     ],
   },
   {
-    slug: "kombiautomaten",
-    name: "Kombiautomaten",
-    singular: "Kombiautomat",
-    formValue: "kombiautomat",
-    illustration: "combo",
-    tagline: "Snacks und Getränke aus einem Gerät – die kompakte Komplettlösung.",
-    teaser:
-      "Ein Automat, zwei Bedürfnisse: Snacks und gekühlte Getränke auf einer Stellfläche. Die naheliegende Wahl für kleinere Standorte.",
-    differentiator: "Snacks und Getränke auf einer Stellfläche",
-    seo: {
-      title: "Kombiautomaten für Snacks & Getränke – Region Stuttgart",
-      description:
-        "Snacks und gekühlte Getränke aus einem Gerät: Kombiautomaten für kleinere Unternehmen, Werkstätten und Sportanlagen in Esslingen, Stuttgart und Umgebung.",
-    },
-    intro: [
-      "Nicht jeder Standort braucht zwei Geräte. Ein Kombiautomat vereint Snacks und gekühlte Getränke in einem Automaten und spart damit Platz und Abstimmungsaufwand.",
-      "Gerade für kleinere Unternehmen, Werkstätten, Praxen oder Vereinsheime ist das oft die passendste Lösung. Die Aufteilung zwischen Snacks und Getränken richtet sich danach, was an Ihrem Standort gebraucht wird.",
-    ],
-    applications: [
-      {
-        title: "Kleinere Unternehmen",
-        text: "Wenn der Platz für zwei Automaten fehlt, die Mitarbeitenden aber beides schätzen.",
-      },
-      {
-        title: "Werkstätten und Handwerk",
-        text: "Für Teams, die zwischen Terminen kurz durchatmen – und für Kundschaft im Wartebereich.",
-      },
-      {
-        title: "Vereine und Sportanlagen",
-        text: "Für Trainingsbetrieb und Spieltage, ohne dass jemand Kiosk-Dienst übernehmen muss.",
-      },
-      {
-        title: "Hotels und Unterkünfte",
-        text: "Als Angebot für Gäste, die spät anreisen oder nachts noch etwas brauchen.",
-      },
-    ],
-    assortment: [
-      { group: "Snack-Fächer", items: ["Riegel und Süßwaren", "Chips und Salzgebäck", "Nüsse und Proteinriegel"] },
-      { group: "Gekühltes Fach", items: ["Wasser und Schorlen", "Softdrinks und Eistee"] },
-    ],
-    suitableFor: [
-      "Kleinere und mittlere Unternehmen",
-      "Werkstätten, Autohäuser und Praxen",
-      "Vereinsheime und Sportanlagen",
-      "Hotels, Pensionen und Apartmenthäuser",
-      "Gewerbeflächen mit begrenztem Platz",
-    ],
-    benefits: [
-      {
-        title: "Eine Stellfläche für beides",
-        text: "Snacks und Getränke aus einem Gerät – ideal, wenn der verfügbare Platz begrenzt ist.",
-      },
-      {
-        title: "Ein Ansprechpartner, ein Gerät",
-        text: "Weniger Abstimmung, weniger Technik im Raum, ein klarer Ablauf für Befüllung und Service.",
-      },
-      {
-        title: "Flexible Aufteilung",
-        text: "Wie viel Platz Snacks und Getränke bekommen, richtet sich nach der Nachfrage an Ihrem Standort.",
-      },
-    ],
-    considerations: [
-      {
-        title: "Platz und Belüftung",
-        text: "Wie Getränkeautomaten brauchen auch Kombigeräte etwas Abstand zur Wand für die Kühlung.",
-      },
-      {
-        title: "Stromanschluss",
-        text: "Eine Steckdose in der Nähe ist notwendig. Wir prüfen gemeinsam, ob der Anschluss passt.",
-      },
-      {
-        title: "Sortimentsbreite",
-        text: "Ein Kombigerät bietet von beidem etwas weniger Auswahl als zwei spezialisierte Automaten.",
-      },
-      {
-        title: "Zugang",
-        text: "Befüllung und Service müssen zu vereinbarten Zeiten möglich sein.",
-      },
-    ],
-    customization: [
-      "Verhältnis von Snack- zu Getränkefächern",
-      "Sortiment nach Zielgruppe und Tageszeit",
-      "Bewusstere Auswahl auf Wunsch",
-      "Bargeldlose Zahlung, sofern vom Gerät unterstützt",
-    ],
-  },
-  {
     slug: "kaffeeautomaten",
     name: "Kaffeeautomaten",
     singular: "Kaffeeautomat",
@@ -380,6 +293,93 @@ export const machines: MachineCategory[] = [
       "Getränkeauswahl passend zum Team",
       "Kaffeesorte und Milchoptionen",
       "Becher oder eigene Tasse – je nach Gerät",
+      "Bargeldlose Zahlung, sofern vom Gerät unterstützt",
+    ],
+  },
+  {
+    slug: "kombiautomaten",
+    name: "Kombiautomaten",
+    singular: "Kombiautomat",
+    formValue: "kombiautomat",
+    illustration: "combo",
+    tagline: "Snacks und Getränke aus einem Gerät – die kompakte Komplettlösung.",
+    teaser:
+      "Ein Automat, zwei Bedürfnisse: Snacks und gekühlte Getränke auf einer Stellfläche. Die naheliegende Wahl für kleinere Standorte.",
+    differentiator: "Snacks und Getränke auf einer Stellfläche",
+    seo: {
+      title: "Kombiautomaten für Snacks & Getränke – Region Stuttgart",
+      description:
+        "Snacks und gekühlte Getränke aus einem Gerät: Kombiautomaten für kleinere Unternehmen, Werkstätten und Sportanlagen in Esslingen, Stuttgart und Umgebung.",
+    },
+    intro: [
+      "Nicht jeder Standort braucht zwei Geräte. Ein Kombiautomat vereint Snacks und gekühlte Getränke in einem Automaten und spart damit Platz und Abstimmungsaufwand.",
+      "Gerade für kleinere Unternehmen, Werkstätten, Praxen oder Vereinsheime ist das oft die passendste Lösung. Die Aufteilung zwischen Snacks und Getränken richtet sich danach, was an Ihrem Standort gebraucht wird.",
+    ],
+    applications: [
+      {
+        title: "Kleinere Unternehmen",
+        text: "Wenn der Platz für zwei Automaten fehlt, die Mitarbeitenden aber beides schätzen.",
+      },
+      {
+        title: "Werkstätten und Handwerk",
+        text: "Für Teams, die zwischen Terminen kurz durchatmen – und für Kundschaft im Wartebereich.",
+      },
+      {
+        title: "Vereine und Sportanlagen",
+        text: "Für Trainingsbetrieb und Spieltage, ohne dass jemand Kiosk-Dienst übernehmen muss.",
+      },
+      {
+        title: "Hotels und Unterkünfte",
+        text: "Als Angebot für Gäste, die spät anreisen oder nachts noch etwas brauchen.",
+      },
+    ],
+    assortment: [
+      { group: "Snack-Fächer", items: ["Riegel und Süßwaren", "Chips und Salzgebäck", "Nüsse und Proteinriegel"] },
+      { group: "Gekühltes Fach", items: ["Wasser und Schorlen", "Softdrinks und Eistee"] },
+    ],
+    suitableFor: [
+      "Kleinere und mittlere Unternehmen",
+      "Werkstätten, Autohäuser und Praxen",
+      "Vereinsheime und Sportanlagen",
+      "Hotels, Pensionen und Apartmenthäuser",
+      "Gewerbeflächen mit begrenztem Platz",
+    ],
+    benefits: [
+      {
+        title: "Eine Stellfläche für beides",
+        text: "Snacks und Getränke aus einem Gerät – ideal, wenn der verfügbare Platz begrenzt ist.",
+      },
+      {
+        title: "Ein Ansprechpartner, ein Gerät",
+        text: "Weniger Abstimmung, weniger Technik im Raum, ein klarer Ablauf für Befüllung und Service.",
+      },
+      {
+        title: "Flexible Aufteilung",
+        text: "Wie viel Platz Snacks und Getränke bekommen, richtet sich nach der Nachfrage an Ihrem Standort.",
+      },
+    ],
+    considerations: [
+      {
+        title: "Platz und Belüftung",
+        text: "Wie Getränkeautomaten brauchen auch Kombigeräte etwas Abstand zur Wand für die Kühlung.",
+      },
+      {
+        title: "Stromanschluss",
+        text: "Eine Steckdose in der Nähe ist notwendig. Wir prüfen gemeinsam, ob der Anschluss passt.",
+      },
+      {
+        title: "Sortimentsbreite",
+        text: "Ein Kombigerät bietet von beidem etwas weniger Auswahl als zwei spezialisierte Automaten.",
+      },
+      {
+        title: "Zugang",
+        text: "Befüllung und Service müssen zu vereinbarten Zeiten möglich sein.",
+      },
+    ],
+    customization: [
+      "Verhältnis von Snack- zu Getränkefächern",
+      "Sortiment nach Zielgruppe und Tageszeit",
+      "Bewusstere Auswahl auf Wunsch",
       "Bargeldlose Zahlung, sofern vom Gerät unterstützt",
     ],
   },

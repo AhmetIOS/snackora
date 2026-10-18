@@ -13,7 +13,7 @@ export const siteConfig = {
   url: siteUrl,
   locale: "de_DE",
   description:
-    "Snackora plant moderne Snack-, Getränke-, Kombi- und Kaffeeautomaten für Unternehmen und geeignete Standorte in Esslingen, Stuttgart und der Region. Jetzt unverbindlich anfragen.",
+    "Snackora plant moderne Snack-, Getränke-, Kaffee- und Kombiautomaten für Unternehmen und geeignete Standorte in Esslingen, Stuttgart und der Region. Jetzt unverbindlich anfragen.",
 } as const;
 
 export interface NavItem {
@@ -43,8 +43,8 @@ export const indexableRoutes = [
   { path: "/automaten", priority: 0.9 },
   { path: "/automaten/snackautomaten", priority: 0.8 },
   { path: "/automaten/getraenkeautomaten", priority: 0.8 },
-  { path: "/automaten/kombiautomaten", priority: 0.8 },
   { path: "/automaten/kaffeeautomaten", priority: 0.8 },
+  { path: "/automaten/kombiautomaten", priority: 0.8 },
   { path: "/fuer-unternehmen", priority: 0.9 },
   { path: "/standort-anbieten", priority: 0.9 },
   { path: "/anfrage", priority: 0.7 },

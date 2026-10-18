@@ -39,7 +39,7 @@ Runtime dependencies are deliberately few: `next`, `react`, `react-dom`, `react-
 src/
   app/                    routes (one folder per URL), metadata files, API route
     api/inquiry/route.ts  form endpoint
-    automaten/[slug]/     4 category pages (snack, drink, combo, coffee) from content/machines.ts
+    automaten/[slug]/     4 category pages (snack, drink, coffee, combo) from content/machines.ts
     sitemap.ts robots.ts manifest.ts opengraph-image.png icon.svg apple-icon.png favicon.ico
   components/
     brand/                Logo, BrandSymbol, generated logo-data.ts
