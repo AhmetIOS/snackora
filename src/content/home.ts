@@ -8,12 +8,23 @@ export const hero = {
   // Official slogan – do not replace.
   headline: ["Deine Pause.", "Jederzeit."],
   lead: "Moderne Snack-, Getränke- und Kaffeeautomaten für Unternehmen, Mitarbeitende und attraktive Standorte in der Region Stuttgart – individuell geplant und persönlich abgestimmt.",
+  /** Shorter version for the compact mobile hero. */
+  leadShort: "Snack-, Getränke- und Kaffeeautomaten für Unternehmen und Standorte in der Region Stuttgart – individuell geplant.",
   primaryCta: { label: "Automatenlösung anfragen", href: "/anfrage" },
+  /** Short label for narrow layouts (mobile hero). */
+  primaryCtaShort: "Jetzt anfragen",
   secondaryCta: { label: "Standort anbieten", href: "/standort-anbieten" },
   region: ["Region Stuttgart", "Esslingen", "Waiblingen"],
 };
 
-export const offerStrip = ["Snackautomaten", "Getränkeautomaten", "Kaffeeautomaten", "Kombiautomaten", "Standortpartnerschaften"];
+/** Floating tags around the hero machine (icon keys: snacks, drinks, coffee, care). */
+export const heroTags = [
+  { icon: "snacks", title: "Snacks & Riegel", text: "süß, herzhaft, bewusst" },
+  { icon: "drinks", title: "Kalte Getränke", text: "gut gekühlt vor Ort" },
+  { icon: "coffee", title: "Kaffee & Tee", text: "frisch auf Knopfdruck" },
+  { icon: "care", title: "Persönlich betreut", text: "aus der Region" },
+];
+
 
 export const valueProps = [
   {

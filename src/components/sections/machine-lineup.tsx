@@ -33,7 +33,6 @@ export function MachineLineup({
   const H = headingLevel;
   return (
     <section aria-labelledby="lineup-title" className="surface-dark relative overflow-hidden bg-forest py-20 text-cream sm:py-28">
-      <div className="bg-rails-dark pointer-events-none absolute inset-0 opacity-70" />
       <div className="container-site relative">
         <div className="grid gap-6 lg:grid-cols-12 lg:items-end">
           <div className="lg:col-span-7">
@@ -63,7 +62,6 @@ export function MachineLineup({
             <li key={m.slug} className="reveal">
               <article className="group relative grid h-full grid-cols-[6.5rem_1fr] overflow-hidden rounded-panel border border-line-dark bg-forest-deep transition-colors duration-300 hover:border-lime/60 sm:grid-cols-[9rem_1fr] md:flex md:flex-col [&>div:first-child]:min-h-32">
                 <div className={`relative overflow-hidden md:h-80 ${STAGE[m.illustration]}`}>
-                  <div className="bg-rails absolute inset-0 opacity-60" />
                   {machinePhotos[m.slug] ? (
                     <Image src={machinePhotos[m.slug]!.src} alt="" fill sizes="(min-width: 768px) 33vw, 9rem" className="object-cover" />
                   ) : (

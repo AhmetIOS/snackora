@@ -22,7 +22,7 @@ export function NavLinks({ items }: { items: NavItem[] }) {
               aria-current={active ? "page" : undefined}
               className={cn(
                 "relative inline-flex h-10 items-center rounded-[10px] px-3 text-[0.95rem] font-medium transition-colors",
-                active ? "text-ink" : "text-ink/75 hover:text-ink"
+                active ? "text-cream" : "text-cream/75 hover:text-cream"
               )}
             >
               {item.label}

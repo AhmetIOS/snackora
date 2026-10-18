@@ -41,7 +41,7 @@ export function MobileNav({ groups, cta }: { groups: Group[]; cta: NavItem }) {
         onClick={open}
         aria-haspopup="dialog"
         aria-label="Menü öffnen"
-        className="-mr-2 grid size-12 place-items-center rounded-key text-ink transition-colors hover:bg-ink/5"
+        className="-mr-2 grid size-12 place-items-center rounded-key text-cream transition-colors hover:bg-cream/10"
       >
         <Menu className="size-7" strokeWidth={1.75} aria-hidden="true" />
       </button>
@@ -49,14 +49,14 @@ export function MobileNav({ groups, cta }: { groups: Group[]; cta: NavItem }) {
       <dialog
         ref={dialogRef}
         aria-labelledby={titleId}
-        className="mobile-nav surface-dark fixed inset-0 m-0 h-dvh max-h-none w-full max-w-none overflow-y-auto bg-forest p-0 text-cream backdrop:bg-ink/40"
+        className="mobile-nav surface-dark fixed inset-0 m-0 h-dvh max-h-none w-full max-w-none overflow-hidden bg-forest p-0 text-cream backdrop:bg-ink/40"
         onClick={(e) => {
           // click on the backdrop area (dialog element itself) closes it
           if (e.target === e.currentTarget) close();
         }}
       >
-        <div className="container-site flex min-h-full flex-col pb-8">
-          <div className="flex h-[var(--header-h)] items-center justify-between">
+        <div className="container-site flex h-full flex-col">
+          <div className="flex h-[var(--header-h)] shrink-0 items-center justify-between">
             <p id={titleId} className="flex items-center gap-3 font-display text-lg font-semibold">
               <BrandSymbol variant="reversed" className="size-8" />
               Menü
@@ -71,10 +71,11 @@ export function MobileNav({ groups, cta }: { groups: Group[]; cta: NavItem }) {
             </button>
           </div>
 
-          <nav aria-label="Mobile Navigation" className="mt-6 grid gap-8">
+          <nav aria-label="Mobile Navigation" className="-mx-1 min-h-0 flex-1 overflow-y-auto overscroll-contain px-1 pt-4 pb-6 [scrollbar-width:thin]">
+            <div className="grid gap-6">
             {groups.map((g) => (
               <div key={g.label}>
-                <p className="slot-label mb-2 text-muted-dark">{g.label}</p>
+                <p className="slot-label mb-1.5 text-muted-dark">{g.label}</p>
                 <ul className="border-t border-line-dark">
                   {g.items.map((item) => {
                     const active = isActive(pathname, item.href) && (item.href !== "/automaten" || pathname === "/automaten");
@@ -85,7 +86,7 @@ export function MobileNav({ groups, cta }: { groups: Group[]; cta: NavItem }) {
                           onClick={close}
                           aria-current={active ? "page" : undefined}
                           className={cn(
-                            "flex min-h-14 items-center justify-between gap-4 py-3 font-display text-[1.45rem] leading-tight font-semibold tracking-tight",
+                            "flex min-h-12 items-center justify-between gap-4 py-2.5 font-display text-[1.15rem] leading-tight font-semibold tracking-tight",
                             active ? "text-lime" : "text-cream"
                           )}
                         >
@@ -98,9 +99,10 @@ export function MobileNav({ groups, cta }: { groups: Group[]; cta: NavItem }) {
                 </ul>
               </div>
             ))}
+            </div>
           </nav>
 
-          <div className="mt-auto pt-10">
+          <div className="shrink-0 border-t border-line-dark bg-forest pt-4 pb-[max(1.25rem,env(safe-area-inset-bottom))]">
             <Link
               href={cta.href}
               onClick={close}
@@ -108,7 +110,7 @@ export function MobileNav({ groups, cta }: { groups: Group[]; cta: NavItem }) {
             >
               {cta.label}
             </Link>
-            <p className="mt-4 text-center text-sm text-muted-dark">Unverbindlich · Persönlich · Region Stuttgart</p>
+            <p className="mt-3 text-center text-xs text-muted-dark">Unverbindlich · Persönlich · Region Stuttgart</p>
           </div>
         </div>
       </dialog>

@@ -24,7 +24,7 @@ export function PageHero({
   const dark = tone === "dark";
   return (
     <section className={cn("relative overflow-hidden", dark ? "surface-dark bg-forest text-cream" : "border-b border-line")}>
-      <div className={cn("pointer-events-none absolute inset-0 opacity-70", dark ? "bg-rails-dark" : "bg-rails [mask-image:linear-gradient(to_bottom,black,transparent)]")} />
+      <div className={cn("pointer-events-none absolute inset-0 opacity-70", dark ? "" : "[mask-image:linear-gradient(to_bottom,black,transparent)]")} />
       <div className="container-site relative pt-8 pb-16 sm:pt-10 sm:pb-20">
         <Breadcrumbs items={crumbs} tone={tone} />
         <div className={cn("mt-10 grid gap-10 sm:mt-14", aside ? "lg:grid-cols-12 lg:items-end" : "")}>

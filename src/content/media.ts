@@ -22,7 +22,17 @@ export interface Photo {
   credit?: string;
 }
 
-export const heroPhoto: Photo | null = null;
+// AI-generated design visual (no real installation). No visible caption by
+// owner's decision; the alt text states that it is a design concept.
+// Background removed and product window softened (third-party brands not
+// legible) by scripts/brand/prepare-hero-photo.mjs. Must be a transparent cut-out.
+export const heroPhoto: Photo | null = {
+  src: "/images/snackora-automat-hero.webp",
+  alt: "Designkonzept: Snackora-Automat in Schwarz mit limettengrüner Seitenfolierung und Snackora-Logo",
+  width: 1122,
+  height: 1402,
+  symbolic: true,
+};
 
 export const machinePhotos: Record<MachineSlug, Photo | null> = {
   snackautomaten: null,

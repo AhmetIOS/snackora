@@ -110,6 +110,8 @@
     dd,
     h3 {
       hyphens: auto;
+      /* only split long compounds: word ≥ 12 chars, ≥ 5 before/after the break */
+      hyphenate-limit-chars: 12 5 5;
       overflow-wrap: break-word;
     }
   }
@@ -159,7 +161,7 @@
 
   /* Display scale (fluid). Tuned so German headlines wrap gracefully at 320px. */
   .type-hero {
-    font-size: clamp(3rem, 1.45rem + 7.2vw, 7.5rem);
+    font-size: clamp(3rem, 1.7rem + 5.2vw, 5.75rem);
     line-height: 0.92;
     letter-spacing: -0.032em;
     font-variation-settings: "opsz" 96;
@@ -188,6 +190,7 @@
 
   /* Mono "slot" label – the brand's small typographic signature */
   .slot-label {
+    hyphens: manual;
     font-family: var(--font-mono);
     font-size: 0.75rem;
     font-weight: 500;
@@ -247,16 +250,6 @@
     font-style: normal;
   }
 
-  /* Subtle editorial grid texture for brand surfaces */
-  .bg-rails {
-    background-image: linear-gradient(to right, rgb(14 26 20 / 0.06) 1px, transparent 1px);
-    background-size: calc(100% / 6) 100%;
-  }
-  .surface-dark .bg-rails,
-  .bg-rails-dark {
-    background-image: linear-gradient(to right, rgb(245 241 230 / 0.07) 1px, transparent 1px);
-    background-size: calc(100% / 6) 100%;
-  }
 }
 
 /* --------------------------------------------------------------------------
@@ -357,7 +350,8 @@
    Header & mobile navigation
    -------------------------------------------------------------------------- */
 html[data-scrolled] .site-header {
-  border-color: var(--color-line);
+  border-color: var(--color-line-dark);
+  box-shadow: 0 10px 30px -18px rgb(14 26 20 / 0.5);
 }
 
 html:has(dialog.mobile-nav[open]) {
