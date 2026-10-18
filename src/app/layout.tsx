@@ -30,7 +30,7 @@ const mono = DM_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: `Snackautomaten & Getränkeautomaten in Esslingen und Stuttgart | ${business.brand}`,
+    default: `Snack-, Getränke- & Kaffeeautomaten in Esslingen und Stuttgart | ${business.brand}`,
     template: `%s | ${business.brand}`,
   },
   description: siteConfig.description,

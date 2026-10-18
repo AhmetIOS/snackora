@@ -14,6 +14,7 @@ export const machineTypes = [
   { value: "snackautomat", label: "Snackautomat" },
   { value: "getraenkeautomat", label: "Getränkeautomat" },
   { value: "kombiautomat", label: "Kombiautomat" },
+  { value: "kaffeeautomat", label: "Kaffeeautomat" },
   { value: "offen", label: "Noch offen" },
 ] as const;
 

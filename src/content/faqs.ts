@@ -21,8 +21,8 @@ export const faqs: Faq[] = [
     id: "loesungen",
     question: "Welche Automatenlösungen bietet Snackora an?",
     answer: [
-      "Wir planen Snackautomaten, Getränkeautomaten und Kombiautomaten, die Snacks und gekühlte Getränke in einem Gerät vereinen. Welche Lösung passt, hängt von Ihrem Standort, dem verfügbaren Platz und der Zahl der Menschen vor Ort ab.",
-      "Perspektivisch sind auch weitere Selbstbedienungslösungen denkbar, etwa Kaffeeautomaten oder kleine 24/7-Verkaufspunkte. Sprechen Sie uns gern an, wenn Sie etwas Bestimmtes suchen.",
+      "Wir planen vier Automatenkonzepte: Snackautomaten, Getränkeautomaten, Kombiautomaten, die Snacks und gekühlte Getränke in einem Gerät vereinen, sowie Kaffeeautomaten für frisch zubereitete Heißgetränke. Welche Lösung passt, hängt von Ihrem Standort, dem verfügbaren Platz und der Zahl der Menschen vor Ort ab.",
+      "Perspektivisch sind auch weitere Selbstbedienungslösungen denkbar, etwa kleine 24/7-Verkaufspunkte. Sprechen Sie uns gern an, wenn Sie etwas Bestimmtes suchen.",
     ],
     home: true,
   },
@@ -58,7 +58,7 @@ export const faqs: Faq[] = [
     id: "produkte",
     question: "Welche Produkte können angeboten werden?",
     answer: [
-      "Typisch sind Schokoriegel, Kekse, Chips, Salzgebäck, Nüsse, Protein- und Müsliriegel sowie Wasser, Schorlen, Softdrinks und Eistee.",
+      "Typisch sind Schokoriegel, Kekse, Chips, Salzgebäck, Nüsse, Protein- und Müsliriegel, Wasser, Schorlen, Softdrinks und Eistee sowie bei Kaffeeautomaten Kaffee, Espresso, Cappuccino, Tee und Kakao.",
       "Was konkret angeboten wird, hängt vom Gerät, vom Standort und von den Bezugsmöglichkeiten ab. Frische oder gekühlte Speisen erfordern besondere Geräte und Abläufe und sind daher nur nach gesonderter Prüfung möglich.",
     ],
   },

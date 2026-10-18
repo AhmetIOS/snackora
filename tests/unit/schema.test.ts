@@ -53,8 +53,11 @@ describe("inquiry schemas", () => {
     expect(kontaktSchema.safeParse({ ...validFields.kontakt, phone: "call me" }).success).toBe(false);
   });
 
-  it("rejects unknown option values", () => {
-    expect(anfrageSchema.safeParse({ ...validFields.anfrage, machineType: "kaffeeautomat" }).success).toBe(false);
+  it("accepts all four machine concepts and rejects unknown option values", () => {
+    for (const machineType of ["snackautomat", "getraenkeautomat", "kombiautomat", "kaffeeautomat", "offen"]) {
+      expect(anfrageSchema.safeParse({ ...validFields.anfrage, machineType }).success, machineType).toBe(true);
+    }
+    expect(anfrageSchema.safeParse({ ...validFields.anfrage, machineType: "eisautomat" }).success).toBe(false);
   });
 
   it("requires a UUID submission id in the envelope", () => {

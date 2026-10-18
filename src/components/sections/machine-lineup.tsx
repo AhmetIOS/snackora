@@ -16,11 +16,12 @@ const STAGE = {
   snack: "bg-lime",
   drink: "bg-[#D6EAF4]",
   combo: "bg-sand",
+  coffee: "bg-[#E6CFB4]",
 } as const;
 
 export function MachineLineup({
-  heading = "Drei Automaten. Eine Frage: Was passt zu Ihnen?",
-  intro = "Ob Snacks, gekühlte Getränke oder beides aus einem Gerät – welcher Automat sinnvoll ist, hängt von Ihrem Standort ab. Ein erster Überblick:",
+  heading = "Vier Konzepte. Eine Frage: Was passt zu Ihnen?",
+  intro = "Snacks, gekühlte Getränke, beides aus einem Gerät oder frischer Kaffee – welcher Automat sinnvoll ist, hängt von Ihrem Standort ab. Ein erster Überblick:",
   showOverviewLink = true,
   headingLevel = "h2",
 }: {
@@ -57,7 +58,7 @@ export function MachineLineup({
           </div>
         </div>
 
-        <ul className="mt-10 grid gap-4 md:mt-14 md:grid-cols-3 md:gap-5">
+        <ul className="mt-10 grid gap-4 md:mt-14 md:grid-cols-2 md:gap-5 xl:grid-cols-4">
           {machines.map((m) => (
             <li key={m.slug} className="reveal">
               <article className="group relative grid h-full grid-cols-[6.5rem_1fr] overflow-hidden rounded-panel border border-line-dark bg-forest-deep transition-colors duration-300 hover:border-lime/60 sm:grid-cols-[9rem_1fr] md:flex md:flex-col [&>div:first-child]:min-h-32">
@@ -81,8 +82,12 @@ export function MachineLineup({
                   )}
                 </div>
                 <div className="flex min-w-0 flex-1 flex-col p-5 sm:p-6 md:p-7">
-                  <h3 className="type-h3">
-                    <Link href={`/automaten/${m.slug}`} className="after:absolute after:inset-0 after:content-[''] focus-visible:outline-none">
+                  <h3 className="type-h3 hyphens-auto xl:text-[1.4rem]">
+                    <Link
+                      href={`/automaten/${m.slug}`}
+                      prefetch
+                      className="after:absolute after:inset-0 after:content-[''] focus-visible:outline-none"
+                    >
                       {m.name}
                     </Link>
                   </h3>

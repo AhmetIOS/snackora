@@ -69,7 +69,7 @@ All variables are documented in [.env.example](.env.example).
 | --- | --- |
 | **Legal & contact data** (address, e-mail, phone, VAT ID, mailbox provider, review flag) | `src/config/business.ts` |
 | Navigation, sitemap routes, default SEO text | `src/config/site.ts` |
-| Machine categories (creates `/automaten/[slug]` pages) | `src/content/machines.ts` |
+| Machine categories – currently 4: Snack, Getränke, Kombi, Kaffee (creates `/automaten/[slug]` pages) | `src/content/machines.ts` |
 | FAQs (homepage preview via `home: true`) | `src/content/faqs.ts` |
 | Homepage copy, process steps, use cases | `src/content/home.ts` |
 | Form fields and option lists | `src/components/forms/form-configs.ts`, `src/lib/inquiry/options.ts` |
@@ -80,7 +80,7 @@ All variables are documented in [.env.example](.env.example).
 
 ### Adding a machine category
 
-1. Add an entry to `machines` in `src/content/machines.ts`. The page, overview card and comparison column are generated from it.
+1. Add an entry to `machines` in `src/content/machines.ts`. The page and overview card are generated from it. Add the matching column values in the comparison table (`src/app/automaten/page.tsx`), a stage colour in `machine-lineup.tsx` and a photo slot in `src/content/media.ts`.
 2. Add `/automaten/<slug>` to `indexableRoutes` in `src/config/site.ts`.
 3. Optionally add it to `machineTypes` in `src/lib/inquiry/options.ts` so the forms offer it.
 

@@ -9,6 +9,8 @@
  *    "Symbolbild". Never show other brands' logos or invented locations.
  */
 
+import type { MachineSlug } from "./machines";
+
 export interface Photo {
   src: string;
   alt: string;
@@ -22,8 +24,9 @@ export interface Photo {
 
 export const heroPhoto: Photo | null = null;
 
-export const machinePhotos: Record<"snackautomaten" | "getraenkeautomaten" | "kombiautomaten", Photo | null> = {
+export const machinePhotos: Record<MachineSlug, Photo | null> = {
   snackautomaten: null,
   getraenkeautomaten: null,
   kombiautomaten: null,
+  kaffeeautomaten: null,
 };

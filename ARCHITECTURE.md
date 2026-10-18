@@ -39,7 +39,7 @@ Runtime dependencies are deliberately few: `next`, `react`, `react-dom`, `react-
 src/
   app/                    routes (one folder per URL), metadata files, API route
     api/inquiry/route.ts  form endpoint
-    automaten/[slug]/     category pages, generated from content/machines.ts
+    automaten/[slug]/     4 category pages (snack, drink, combo, coffee) from content/machines.ts
     sitemap.ts robots.ts manifest.ts opengraph-image.png icon.svg apple-icon.png favicon.ico
   components/
     brand/                Logo, BrandSymbol, generated logo-data.ts
@@ -67,7 +67,7 @@ tests/
 
 ## Frontend
 
-- **Rendering.** `cacheComponents: true` + `partialPrefetching: true`. All 13 pages are prerendered static HTML at build time. The only time-dependent value (the copyright year) is a `"use cache"` component with `cacheLife("days")`. `/api/inquiry` is the only dynamic route.
+- **Rendering.** `cacheComponents: true` + `partialPrefetching: true`. Category pages read `params` inside a `<Suspense>` boundary, and the line-up cards link with `prefetch`, so navigation to them is instant. All 14 pages are prerendered static HTML at build time. The only time-dependent value (the copyright year) is a `"use cache"` component with `cacheLife("days")`. `/api/inquiry` is the only dynamic route.
 - **Client JavaScript** is limited to small islands:
   - `nav-links` (active state)
   - `scroll-state` (header border)

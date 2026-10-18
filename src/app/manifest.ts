@@ -5,7 +5,7 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     name: `${business.brand} – ${business.slogan}`,
     short_name: business.brand,
-    description: "Snack- und Getränkeautomaten für Unternehmen und Standorte in der Region Stuttgart.",
+    description: "Snack-, Getränke- und Kaffeeautomaten für Unternehmen und Standorte in der Region Stuttgart.",
     start_url: "/",
     display: "browser",
     background_color: "#F5F1E6",

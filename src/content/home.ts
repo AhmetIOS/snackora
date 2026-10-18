@@ -4,16 +4,16 @@
  */
 
 export const hero = {
-  eyebrow: "Snack- & Getränkeautomaten",
+  eyebrow: "Snack-, Getränke- & Kaffeeautomaten",
   // Official slogan – do not replace.
   headline: ["Deine Pause.", "Jederzeit."],
-  lead: "Moderne Snack- und Getränkeautomaten für Unternehmen, Mitarbeitende und attraktive Standorte in der Region Stuttgart – individuell geplant und persönlich abgestimmt.",
+  lead: "Moderne Snack-, Getränke- und Kaffeeautomaten für Unternehmen, Mitarbeitende und attraktive Standorte in der Region Stuttgart – individuell geplant und persönlich abgestimmt.",
   primaryCta: { label: "Automatenlösung anfragen", href: "/anfrage" },
   secondaryCta: { label: "Standort anbieten", href: "/standort-anbieten" },
   region: ["Region Stuttgart", "Esslingen", "Waiblingen"],
 };
 
-export const offerStrip = ["Snackautomaten", "Getränkeautomaten", "Kombiautomaten", "Standortpartnerschaften"];
+export const offerStrip = ["Snackautomaten", "Getränkeautomaten", "Kombiautomaten", "Kaffeeautomaten", "Standortpartnerschaften"];
 
 export const valueProps = [
   {
@@ -42,7 +42,7 @@ export const useCases = [
   {
     key: "buero",
     title: "Büros & Unternehmen",
-    text: "Für die kurze Pause zwischen zwei Terminen: Snacks und Getränke im Haus, ohne dass jemand den Einkauf organisieren muss.",
+    text: "Für die kurze Pause zwischen zwei Terminen: Kaffee, Snacks und Getränke im Haus, ohne dass jemand den Einkauf organisieren muss.",
     needs: ["Kurze Pausen", "Besprechungen", "Besucher"],
   },
   {

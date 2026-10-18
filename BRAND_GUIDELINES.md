@@ -161,7 +161,7 @@ Avoid: gradients, glows, floating shapes, glassmorphism, emoji, pill-shaped ever
 
 ## 8. Imagery
 
-**Current state:** bespoke vector illustrations of Snackora machines (snack, drink, combo) and the wrap concept, always captioned as *Illustration / Designkonzept*. No stock photography is used.
+**Current state:** bespoke vector illustrations of the four Snackora machine concepts (snack, drink, combo, coffee), each with an oversized product still-life on its own colour stage (lime, light blue, sand, latte), plus the wrap concept, always captioned as *Illustration / Designkonzept*. No stock photography is used.
 
 **Photography** can be added per slot in `src/content/media.ts`. It replaces the illustration and is captioned automatically. Rules:
 
@@ -179,6 +179,7 @@ Avoid: gradients, glows, floating shapes, glassmorphism, emoji, pill-shaped ever
 - *Hero:* "Editorial photograph of a modern, minimalist vending machine with a matte deep forest-green body and a glass front showing neatly arranged colourful snack packages without any readable text or logos, standing in a bright contemporary office break room with warm off-white walls and light oak floor, soft natural daylight from the side, shallow depth of field, calm premium European product photography, 4:5"
 - *Snackautomat:* "Close-up product photograph of a vending machine glass front with spiral coils holding colourful unbranded snack bags and bars, deep green machine frame, soft reflections, no text, no logos, clean commercial interior, 4:5"
 - *Getränkeautomat:* "Photograph of a modern refrigerated beverage vending machine with unbranded water bottles and plain coloured cans in tidy rows, deep green frame, cool soft light, industrial hall in the background softly blurred, no text, no logos, 4:5"
+- *Kaffeeautomat:* "Photograph of a modern coffee vending machine with a matte deep forest-green body and a clean touchscreen menu, a white paper cup being filled in the dispensing niche with light steam, bright office kitchen with warm off-white walls, soft daylight, no text, no logos, 4:5"
 - *Standort:* "Wide photograph of a bright, empty corridor in a modern commercial building with a free wall space and a power outlet, warm off-white walls, natural light, architectural photography, no people, 16:9"
 
 ## 9. Brand on the machine (wrap concept)

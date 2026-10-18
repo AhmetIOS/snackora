@@ -64,7 +64,7 @@ h1 span{color:#C9F26B}
 </style></head><body><div class="rails"></div>
 <div class="brand">${symbol.replace(/width="[^"]+" height="[^"]+"/, 'width="56" height="56"')}${wordmark.replace(/width="[^"]+" height="[^"]+"/, 'height="46"')}</div>
 <h1>Deine Pause.<br><span>Jederzeit</span><i class="dot"></i></h1>
-<p class="meta">Snack- &amp; Getränkeautomaten · Region Stuttgart</p>
+<p class="meta">Snack-, Getränke- &amp; Kaffeeautomaten · Region Stuttgart</p>
 <div class="stage"><div class="plinth"></div>${frontSvg}</div>
 </body></html>`;
 
@@ -75,7 +75,7 @@ for (const name of ["opengraph-image", "twitter-image"]) {
   await og.screenshot({ path: join(root, `src/app/${name}.png`) });
   writeFileSync(
     join(root, `src/app/${name}.alt.txt`),
-    "Snackora – Deine Pause. Jederzeit. Snack- und Getränkeautomaten in der Region Stuttgart."
+    "Snackora – Deine Pause. Jederzeit. Snack-, Getränke- und Kaffeeautomaten in der Region Stuttgart."
   );
 }
 await browser.close();

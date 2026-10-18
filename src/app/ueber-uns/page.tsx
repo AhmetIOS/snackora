@@ -10,7 +10,7 @@ import { pageMetadata } from "@/lib/seo/metadata";
 export const metadata: Metadata = pageMetadata({
   title: "Über Snackora",
   description:
-    "Snackora ist ein inhabergeführtes Unternehmen aus der Region Stuttgart, das moderne Snack- und Getränkeversorgung einfacher und zugänglicher machen möchte.",
+    "Snackora ist ein inhabergeführtes Unternehmen aus der Region Stuttgart, das moderne Snack-, Getränke- und Kaffeeversorgung einfacher und zugänglicher machen möchte.",
   path: "/ueber-uns",
 });
 
@@ -40,7 +40,7 @@ export default function UeberUnsPage() {
         crumbs={[{ name: "Über uns", href: "/ueber-uns" }]}
         eyebrow="Über Snackora"
         title="Die gute Pause soll einfach sein."
-        lead="Snackora steht für die Idee, moderne Snack- und Getränkeversorgung einfacher, zugänglicher und zeitgemäßer zu gestalten – für Unternehmen, ihre Mitarbeitenden und alle, die zwischendurch eine kleine Stärkung brauchen."
+        lead="Snackora steht für die Idee, moderne Snack-, Getränke- und Kaffeeversorgung einfacher, zugänglicher und zeitgemäßer zu gestalten – für Unternehmen, ihre Mitarbeitenden und alle, die zwischendurch eine kleine Stärkung brauchen."
       />
 
       <section aria-labelledby="idee-title" className="py-20 sm:py-28">

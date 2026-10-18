@@ -6,6 +6,7 @@ const routes = [
   "/automaten/snackautomaten",
   "/automaten/getraenkeautomaten",
   "/automaten/kombiautomaten",
+  "/automaten/kaffeeautomaten",
   "/fuer-unternehmen",
   "/standort-anbieten",
   "/ueber-uns",

@@ -10,7 +10,7 @@ import { SlotLabel } from "@/components/ui/slot-label";
 import { pageMetadata } from "@/lib/seo/metadata";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Automatenlösungen: Snack-, Getränke- & Kombiautomaten",
+  title: "Automatenlösungen: Snack-, Getränke-, Kombi- & Kaffeeautomaten",
   description:
     "Snackautomaten, Getränkeautomaten und Kombiautomaten für Unternehmen und Standorte in Esslingen, Stuttgart und Umgebung – welcher Automat passt zu Ihnen?",
   path: "/automaten",
@@ -23,11 +23,17 @@ const comparison: { label: string; values: Record<string, string> }[] = [
       snackautomaten: "Riegel, Chips, Nüsse, Gebäck",
       getraenkeautomaten: "Wasser, Schorlen, Softdrinks, Eistee",
       kombiautomaten: "Snacks und gekühlte Getränke",
+      kaffeeautomaten: "Kaffee, Espresso, Cappuccino, Tee, Kakao",
     },
   },
   {
-    label: "Kühlung",
-    values: { snackautomaten: "Nicht erforderlich", getraenkeautomaten: "Ja", kombiautomaten: "Ja, im Getränkefach" },
+    label: "Technik",
+    values: {
+      snackautomaten: "Kühlung nicht erforderlich",
+      getraenkeautomaten: "Kühlung erforderlich",
+      kombiautomaten: "Kühlung im Getränkefach",
+      kaffeeautomaten: "Wasser: Festanschluss oder Tank",
+    },
   },
   {
     label: "Aufstellung",
@@ -35,6 +41,7 @@ const comparison: { label: string; values: Record<string, string> }[] = [
       snackautomaten: "Kompakt, oft direkt an der Wand",
       getraenkeautomaten: "Etwas Abstand für die Belüftung",
       kombiautomaten: "Ein Gerät für beides, Belüftung beachten",
+      kaffeeautomaten: "Regelmäßige Reinigung, Wasserversorgung klären",
     },
   },
   {
@@ -43,6 +50,7 @@ const comparison: { label: string; values: Record<string, string> }[] = [
       snackautomaten: "Büros, Werkstätten, Wartebereiche",
       getraenkeautomaten: "Hallen, Sportanlagen, große Teams",
       kombiautomaten: "Kleinere Standorte mit begrenztem Platz",
+      kaffeeautomaten: "Büros, Empfangsbereiche, Autohäuser, Praxen",
     },
   },
   {
@@ -51,6 +59,7 @@ const comparison: { label: string; values: Record<string, string> }[] = [
       snackautomaten: "… Getränke bereits anders abgedeckt sind",
       getraenkeautomaten: "… vor allem Erfrischung gefragt ist",
       kombiautomaten: "… nur Platz für ein Gerät ist",
+      kaffeeautomaten: "… die Kaffeepause im Mittelpunkt steht",
     },
   },
 ];
@@ -62,7 +71,7 @@ export default function AutomatenPage() {
         crumbs={[{ name: "Automaten", href: "/automaten" }]}
         eyebrow="Automatenlösungen"
         title="Der passende Automat für Ihren Standort."
-        lead="Snacks, gekühlte Getränke oder beides aus einem Gerät: Welche Lösung sinnvoll ist, hängt von Ihren Räumen, Ihren Arbeitszeiten und den Menschen vor Ort ab. Hier finden Sie einen ersten Überblick."
+        lead="Snacks, gekühlte Getränke, beides aus einem Gerät oder frisch zubereiteter Kaffee: Welche Lösung sinnvoll ist, hängt von Ihren Räumen, Ihren Arbeitszeiten und den Menschen vor Ort ab. Hier finden Sie einen ersten Überblick."
       >
         <div className="flex flex-col gap-3 xs:flex-row">
           <ButtonLink href="/anfrage" size="lg">
@@ -74,7 +83,7 @@ export default function AutomatenPage() {
         </div>
       </PageHero>
 
-      <MachineLineup heading="Drei Kategorien, ein Ziel: die gute Pause." showOverviewLink={false} />
+      <MachineLineup heading="Vier Konzepte, ein Ziel: die gute Pause." showOverviewLink={false} />
 
       <section id="vergleich" aria-labelledby="vergleich-title" className="scroll-mt-24 py-20 sm:py-28">
         <div className="container-site">
@@ -93,7 +102,7 @@ export default function AutomatenPage() {
               <caption className="sr-only">Vergleich der Automatenkategorien</caption>
               <thead className="bg-forest text-cream">
                 <tr>
-                  <th scope="col" className="w-[20%] p-5 font-mono text-xs font-medium tracking-wider uppercase">
+                  <th scope="col" className="w-[16%] p-5 font-mono text-xs font-medium tracking-wider uppercase">
                     Merkmal
                   </th>
                   {machines.map((m) => (
@@ -159,8 +168,8 @@ export default function AutomatenPage() {
           <div className="mt-6 rounded-panel border border-dashed border-ink/25 p-7 sm:p-9">
             <SlotLabel>Ausblick</SlotLabel>
             <p className="mt-3 max-w-3xl text-ink/80">
-              Perspektivisch denken wir über weitere Selbstbedienungslösungen nach, etwa Kaffeeautomaten oder kleine
-              Verkaufspunkte mit 24/7-Zugang. Wenn Sie dafür einen passenden Standort haben, sprechen Sie uns gern schon heute an.
+              Perspektivisch denken wir über weitere Selbstbedienungslösungen nach, etwa kleine Verkaufspunkte mit
+              24/7-Zugang. Wenn Sie dafür einen passenden Standort haben, sprechen Sie uns gern schon heute an.
             </p>
           </div>
         </div>

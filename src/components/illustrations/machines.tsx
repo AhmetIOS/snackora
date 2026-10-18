@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { SYMBOL, TAGLINE_OUTLINE, WORDMARK } from "@/components/brand/logo-data";
-import { Bag, Bar, Bottle, Box, Can, Coil, ControlPanel, Glare, OutputTray, P, Pouch, ShelfEdge } from "./parts";
+import { Bag, Bar, Bottle, Box, Can, CeramicCup, Coil, ControlPanel, Glare, OutputTray, P, PaperCup, Pouch, ShelfEdge, Steam } from "./parts";
 
 /**
  * Snackora machine illustrations (illustrative design concepts – not photos
@@ -19,7 +19,16 @@ interface MachineProps {
   animated?: boolean;
 }
 
-function Shell({ children, title, decorative, className, cold }: MachineProps & { children: ReactNode; cold?: boolean }) {
+function Shell({
+  children,
+  title,
+  decorative,
+  className,
+  cold,
+  screen,
+  tray,
+  display,
+}: MachineProps & { children: ReactNode; cold?: boolean; screen?: boolean; tray?: ReactNode; display?: string }) {
   const tileSize = 46;
   const ws = 148 / WORDMARK.width;
   const wordX = 48 + tileSize + 14;
@@ -56,13 +65,13 @@ function Shell({ children, title, decorative, className, cold }: MachineProps & 
       <rect x={300} y={68} width={46} height={6} rx={3} fill={P.bodyEdge} />
       {/* window frame */}
       <rect x={WIN.x - 6} y={WIN.y - 6} width={WIN.w + 12} height={452} rx={14} fill={P.bodyShade} />
-      <rect x={WIN.x} y={WIN.y} width={WIN.w} height={440} rx={10} fill={cold ? P.glassCold : P.glass} />
+      <rect x={WIN.x} y={WIN.y} width={WIN.w} height={440} rx={10} fill={screen ? "#07140F" : cold ? P.glassCold : P.glass} />
       {children}
-      <Glare x={WIN.x} y={WIN.y} w={WIN.w} h={440} />
-      <ControlPanel x={300} y={WIN.y + 4} display={cold ? "B3" : "A2"} cold={cold} />
+      {screen ? null : <Glare x={WIN.x} y={WIN.y} w={WIN.w} h={440} />}
+      <ControlPanel x={300} y={WIN.y + 4} display={display ?? (cold ? "B3" : "A2")} cold={cold} />
       <rect x={300} y={WIN.y + 330} width={56} height={34} rx={6} fill={P.bodyShade} />
       <rect x={312} y={WIN.y + 342} width={32} height={10} rx={3} fill="#050E0A" />
-      <OutputTray x={WIN.x} y={574} w={WIN.w} h={84} />
+      {tray ?? <OutputTray x={WIN.x} y={574} w={WIN.w} h={84} />}
       <rect x={300} y={574} width={56} height={84} rx={8} fill={P.bodyShade} />
       {/* brand band with slogan */}
       <rect x={24} y={672} width={352} height={34} fill={P.lime} />
@@ -242,7 +251,93 @@ export function ComboMachine({ className, title = "Illustration eines Snackora-K
   );
 }
 
-export function MachineIllustration({ kind, ...props }: MachineProps & { kind: "snack" | "drink" | "combo" }) {
+
+const coffeeMenu = [
+  { name: "Kaffee", kind: "cup" as const },
+  { name: "Espresso", kind: "espresso" as const },
+  { name: "Cappuccino", kind: "foam" as const },
+  { name: "Milchkaffee", kind: "foam" as const },
+  { name: "Tee", kind: "tea" as const },
+  { name: "Kakao", kind: "cup" as const },
+];
+
+function CoffeeScreen() {
+  const pad = 10;
+  const tileW = (WIN.w - pad * 3) / 2;
+  const tileH = 112;
+  const top = WIN.y + 44;
+  return (
+    <g>
+      <rect x={WIN.x + pad} y={WIN.y + 14} width={6} height={6} rx={1.5} fill={P.lime} />
+      <text x={WIN.x + pad + 12} y={WIN.y + 20.5} fontSize={8} fill={P.cream} opacity={0.75} className="font-mono" letterSpacing={1.2}>
+        HEISSGETRÄNKE
+      </text>
+      <rect x={WIN.x + WIN.w - pad - 38} y={WIN.y + 12} width={38} height={10} rx={5} fill={P.forest} />
+      <rect x={WIN.x + WIN.w - pad - 35} y={WIN.y + 15} width={18} height={4} rx={2} fill={P.lime} opacity={0.8} />
+      {coffeeMenu.map((d, i) => {
+        const col = i % 2;
+        const row = Math.floor(i / 2);
+        const x = WIN.x + pad + col * (tileW + pad);
+        const y = top + row * (tileH + pad);
+        const selected = i === 2;
+        const cx = x + tileW / 2;
+        return (
+          <g key={d.name}>
+            <rect x={x} y={y} width={tileW} height={tileH} rx={9} fill={selected ? "#1B4A37" : P.body} stroke={selected ? P.lime : "none"} strokeWidth={2} />
+            <text x={x + 9} y={y + 15} fontSize={7} fill={P.lime} className="font-mono">
+              K{i + 1}
+            </text>
+            {d.kind === "tea" ? (
+              <g>
+                <CeramicCup cx={cx} base={y + 72} w={40} />
+                <path d={`M${cx + 6} ${y + 46}v14`} stroke={P.cream} strokeWidth={1} />
+                <rect x={cx + 3} y={y + 58} width={7} height={8} rx={1} fill={P.lime} />
+              </g>
+            ) : d.kind === "espresso" ? (
+              <CeramicCup cx={cx} base={y + 72} w={28} />
+            ) : (
+              <CeramicCup cx={cx} base={y + 72} w={40} foam={d.kind === "foam"} />
+            )}
+            <Steam cx={cx} y={y + 40} size={22} />
+            <text x={cx} y={y + 96} textAnchor="middle" fontSize={11} fontWeight={600} fill={P.cream} className="font-display">
+              {d.name}
+            </text>
+          </g>
+        );
+      })}
+    </g>
+  );
+}
+
+function CupNiche() {
+  const x = WIN.x;
+  const y = 574;
+  const w = WIN.w;
+  return (
+    <g>
+      <rect x={x} y={y} width={w} height={84} rx={10} fill={P.glass} />
+      <rect x={x + 10} y={y + 8} width={w - 20} height={68} rx={7} fill={P.bodyShade} />
+      <rect x={x + w / 2 - 12} y={y + 8} width={24} height={9} rx={2} fill={P.moss} />
+      <rect x={x + w / 2 - 3} y={y + 17} width={6} height={4} rx={1} fill={P.moss} />
+      <Steam cx={x + w / 2} y={y + 38} size={16} />
+      <PaperCup x={x + w / 2 - 15} base={y + 66} w={30} h={36} />
+      {Array.from({ length: 9 }, (_, i) => (
+        <rect key={i} x={x + w / 2 - 44 + i * 10} y={y + 67} width={6} height={4} rx={1} fill="#06120D" />
+      ))}
+    </g>
+  );
+}
+
+export function CoffeeMachine({ className, title = "Illustration eines Snackora-Kaffeeautomaten", decorative }: MachineProps) {
+  return (
+    <Shell className={className} title={title} decorative={decorative} screen tray={<CupNiche />} display="K3">
+      <CoffeeScreen />
+    </Shell>
+  );
+}
+
+export function MachineIllustration({ kind, ...props }: MachineProps & { kind: "snack" | "drink" | "combo" | "coffee" }) {
+  if (kind === "coffee") return <CoffeeMachine {...props} />;
   if (kind === "drink") return <DrinkMachine {...props} />;
   if (kind === "combo") return <ComboMachine {...props} />;
   return <SnackMachine {...props} />;

@@ -9,7 +9,7 @@ import { pageMetadata } from "@/lib/seo/metadata";
 
 export const metadata: Metadata = pageMetadata({
   title: "Kontakt",
-  description: "Kontakt zu Snackora – Snack- und Getränkeautomaten in Esslingen, Stuttgart und Umgebung. Schreiben Sie uns, wir melden uns persönlich.",
+  description: "Kontakt zu Snackora – Snack-, Getränke- und Kaffeeautomaten in Esslingen, Stuttgart und Umgebung. Schreiben Sie uns, wir melden uns persönlich.",
   path: "/kontakt",
 });
 

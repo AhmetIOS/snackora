@@ -5,6 +5,7 @@
 
 export const P = {
   body: "#12382A",
+  forest: "#12382A",
   bodyShade: "#0E2E22",
   bodyEdge: "#1B4A37",
   glass: "#0A1D16",
@@ -211,6 +212,50 @@ export function OutputTray({ x, y, w, h }: { x: number; y: number; w: number; h:
       <rect x={x + 10} y={y + 10} width={w - 20} height={h - 20} rx={7} fill={P.tray} />
       <rect x={x + w / 2 - 40} y={y + 18} width={80} height={6} rx={3} fill={P.moss} />
       <path d={`M${x + w / 2 - 5} ${y + h - 26}l5 5l5 -5`} fill="none" stroke={P.lime} strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" />
+    </g>
+  );
+}
+
+/** Takeaway paper cup with sleeve and lid. `x`/`base` = left edge / bottom. */
+export function PaperCup({ x, base, w, h, color = P.cream, sleeve = P.forest, lid = P.ink, className }: { x: number; base: number; w: number; h: number; color?: string; sleeve?: string; lid?: string; className?: string }) {
+  const top = base - h;
+  const inset = w * 0.12;
+  const lidH = h * 0.12;
+  return (
+    <g className={className}>
+      <path d={`M${x} ${top + lidH}H${x + w}L${x + w - inset} ${base - 3}Q${x + w - inset} ${base} ${x + w - inset - 3} ${base}H${x + inset + 3}Q${x + inset} ${base} ${x + inset} ${base - 3}Z`} fill={color} />
+      <rect x={x - 2} y={top + lidH * 0.35} width={w + 4} height={lidH * 0.75} rx={lidH * 0.3} fill={lid} />
+      <rect x={x + w * 0.22} y={top} width={w * 0.56} height={lidH * 0.5} rx={lidH * 0.25} fill={lid} />
+      <path d={`M${x + inset * 0.35} ${top + h * 0.38}H${x + w - inset * 0.35}L${x + w - inset * 0.62} ${top + h * 0.72}H${x + inset * 0.62}Z`} fill={sleeve} />
+      <rect x={x + w / 2 - w * 0.07} y={top + h * 0.5} width={w * 0.14} height={w * 0.14} rx={w * 0.03} fill={P.lime} />
+      <rect x={x + w * 0.16} y={top + lidH + 4} width={2.5} height={h * 0.2} rx={1} fill="#fff" opacity={0.35} />
+    </g>
+  );
+}
+
+/** Ceramic cup on a saucer (espresso / cappuccino), seen from the side. */
+export function CeramicCup({ cx, base, w, foam = false, className }: { cx: number; base: number; w: number; foam?: boolean; className?: string }) {
+  const h = w * 0.62;
+  const top = base - h - w * 0.08;
+  const x = cx - w / 2;
+  return (
+    <g className={className}>
+      <ellipse cx={cx} cy={base - w * 0.04} rx={w * 0.68} ry={w * 0.07} fill={P.cream} />
+      <path d={`M${x} ${top}H${x + w}Q${x + w} ${top + h} ${cx} ${top + h}Q${x} ${top + h} ${x} ${top}Z`} fill={P.cream} />
+      <path d={`M${x + w - 1} ${top + h * 0.18}a${w * 0.17} ${w * 0.17} 0 1 1 -${w * 0.06} ${h * 0.55}`} fill="none" stroke={P.cream} strokeWidth={w * 0.07} />
+      <ellipse cx={cx} cy={top + 1} rx={w / 2} ry={w * 0.09} fill={foam ? "#E8D3B5" : "#5A3524"} />
+      {foam ? <ellipse cx={cx} cy={top + 1} rx={w * 0.22} ry={w * 0.04} fill="#B98A5E" /> : null}
+    </g>
+  );
+}
+
+/** Two rising steam lines. */
+export function Steam({ cx, y, size, color = P.cream }: { cx: number; y: number; size: number; color?: string }) {
+  const s = size;
+  return (
+    <g fill="none" stroke={color} strokeWidth={s * 0.09} strokeLinecap="round" opacity={0.75}>
+      <path d={`M${cx - s * 0.18} ${y}c${-s * 0.18} ${-s * 0.2} ${s * 0.18} ${-s * 0.35} 0 ${-s * 0.6}`} />
+      <path d={`M${cx + s * 0.18} ${y + s * 0.05}c${-s * 0.18} ${-s * 0.2} ${s * 0.18} ${-s * 0.35} 0 ${-s * 0.6}`} />
     </g>
   );
 }

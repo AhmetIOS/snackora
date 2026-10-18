@@ -42,7 +42,7 @@ export function organizationJsonLd(): Json {
     ...(isEmailActive ? { email: business.email.address } : {}),
     ...(business.phone ? { telephone: business.phone } : {}),
     areaServed: business.serviceRegion.cities.map((name) => ({ "@type": "City", name })),
-    knowsAbout: ["Snackautomaten", "Getränkeautomaten", "Kombiautomaten", "Automatenaufstellung"],
+    knowsAbout: ["Snackautomaten", "Getränkeautomaten", "Kombiautomaten", "Kaffeeautomaten", "Automatenaufstellung"],
   };
 }
 

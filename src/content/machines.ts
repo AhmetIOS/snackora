@@ -8,9 +8,9 @@
  * supplier and operating concept.
  */
 
-export type MachineSlug = "snackautomaten" | "getraenkeautomaten" | "kombiautomaten";
-export type MachineIllustration = "snack" | "drink" | "combo";
-export type MachineFormValue = "snackautomat" | "getraenkeautomat" | "kombiautomat";
+export type MachineSlug = "snackautomaten" | "getraenkeautomaten" | "kombiautomaten" | "kaffeeautomaten";
+export type MachineIllustration = "snack" | "drink" | "combo" | "coffee";
+export type MachineFormValue = "snackautomat" | "getraenkeautomat" | "kombiautomat" | "kaffeeautomat";
 
 export interface MachineCategory {
   slug: MachineSlug;
@@ -292,6 +292,94 @@ export const machines: MachineCategory[] = [
       "Verhältnis von Snack- zu Getränkefächern",
       "Sortiment nach Zielgruppe und Tageszeit",
       "Bewusstere Auswahl auf Wunsch",
+      "Bargeldlose Zahlung, sofern vom Gerät unterstützt",
+    ],
+  },
+  {
+    slug: "kaffeeautomaten",
+    name: "Kaffeeautomaten",
+    singular: "Kaffeeautomat",
+    formValue: "kaffeeautomat",
+    illustration: "coffee",
+    tagline: "Frischer Kaffee auf Knopfdruck – für die Pause zwischendurch.",
+    teaser:
+      "Kaffee, Cappuccino, Tee oder Kakao, frisch zubereitet und direkt vor Ort. Besonders beliebt in Büros, Werkstätten und Wartebereichen.",
+    differentiator: "Heißgetränke frisch zubereitet, Becher für Becher",
+    seo: {
+      title: "Kaffeeautomaten für Unternehmen in Esslingen & Stuttgart",
+      description:
+        "Kaffeeautomaten für Büros, Betriebe und Wartebereiche in der Region Stuttgart: Kaffee, Cappuccino und Tee auf Knopfdruck. Individuell geplant – jetzt unverbindlich anfragen.",
+    },
+    intro: [
+      "Für viele gehört der Kaffee einfach zur Pause. Ein Kaffeeautomat bereitet Heißgetränke auf Knopfdruck frisch zu – ohne dass sich jemand um Bohnen, Filter oder die Maschine in der Teeküche kümmern muss.",
+      "Welche Getränke angeboten werden und wie der Automat versorgt wird, hängt vom Gerät und vom Standort ab. Kaffeeautomaten brauchen etwas mehr Abstimmung als Snack- oder Getränkeautomaten, etwa zu Wasserversorgung und Reinigung. Das klären wir gemeinsam, bevor etwas vereinbart wird.",
+    ],
+    applications: [
+      {
+        title: "Büro und Verwaltung",
+        text: "Für den Kaffee am Morgen, nach der Besprechung oder am Nachmittag – ohne Gemeinschaftsmaschine und Putzplan.",
+      },
+      {
+        title: "Werkstatt und Produktion",
+        text: "Ein heißes Getränk in der Pause, auch in der Früh- oder Spätschicht.",
+      },
+      {
+        title: "Wartebereiche und Empfang",
+        text: "Für Kundschaft und Gäste in Autohäusern, Werkstätten, Praxen oder Hotels.",
+      },
+      {
+        title: "Sport und Freizeit",
+        text: "Für Eltern am Spielfeldrand, Vereinsmitglieder und Besucher an kalten Tagen.",
+      },
+    ],
+    assortment: [
+      { group: "Kaffee", items: ["Kaffee Crema", "Espresso", "Cappuccino und Milchkaffee"] },
+      { group: "Weitere Heißgetränke", items: ["Tee", "Kakao und heiße Schokolade", "Heißes Wasser"] },
+      { group: "Je nach Gerät", items: ["Kaffee aus frisch gemahlenen Bohnen", "Zucker- und Milchoptionen", "Becher oder eigene Tasse"] },
+    ],
+    suitableFor: [
+      "Büros und Verwaltungen",
+      "Werkstätten, Autohäuser und Praxen",
+      "Produktions- und Logistikbetriebe",
+      "Hotels und Empfangsbereiche",
+      "Vereinsheime und Sportanlagen",
+    ],
+    benefits: [
+      {
+        title: "Keine Teeküchen-Maschine mehr",
+        text: "Kein Entkalken, kein Bohnen-Nachfüllen, keine Diskussion über den Putzplan – Versorgung und Pflege werden zentral organisiert.",
+      },
+      {
+        title: "Mehr als nur Kaffee",
+        text: "Von Espresso über Cappuccino bis zu Tee und Kakao – für unterschiedliche Geschmäcker im Team.",
+      },
+      {
+        title: "Frisch zubereitet",
+        text: "Jedes Getränk wird einzeln zubereitet, je nach Gerät auch aus frisch gemahlenen Bohnen.",
+      },
+    ],
+    considerations: [
+      {
+        title: "Wasserversorgung",
+        text: "Je nach Gerät wird ein Festwasseranschluss benötigt oder der Automat arbeitet mit einem Wassertank, der regelmäßig befüllt werden muss.",
+      },
+      {
+        title: "Reinigung und Hygiene",
+        text: "Kaffeeautomaten müssen regelmäßig gereinigt werden, besonders bei Milchprodukten. Wer das übernimmt, wird vorab vereinbart.",
+      },
+      {
+        title: "Strom und Stellplatz",
+        text: "Für das Aufheizen braucht es einen geeigneten Stromanschluss und einen ebenen, gut erreichbaren Platz.",
+      },
+      {
+        title: "Becher und Abfall",
+        text: "Es sollte geklärt sein, ob Einwegbecher oder eigene Tassen genutzt werden und wie Abfall entsorgt wird.",
+      },
+    ],
+    customization: [
+      "Getränkeauswahl passend zum Team",
+      "Kaffeesorte und Milchoptionen",
+      "Becher oder eigene Tasse – je nach Gerät",
       "Bargeldlose Zahlung, sofern vom Gerät unterstützt",
     ],
   },

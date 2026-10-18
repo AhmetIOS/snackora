@@ -1,4 +1,4 @@
-import { Bag, Bar, Bottle, Can, P, Pouch } from "./parts";
+import { Bag, Bar, Bottle, Can, CeramicCup, P, PaperCup, Pouch, Steam } from "./parts";
 
 /**
  * Oversized product still-life per machine category – makes the category
@@ -7,7 +7,7 @@ import { Bag, Bar, Bottle, Can, P, Pouch } from "./parts";
 
 const CHOC = "#7A4A33";
 
-export function ProductCluster({ kind, className }: { kind: "snack" | "drink" | "combo"; className?: string }) {
+export function ProductCluster({ kind, className }: { kind: "snack" | "drink" | "combo" | "coffee"; className?: string }) {
   const base = 152;
   return (
     <svg viewBox="0 0 220 160" className={className} aria-hidden="true" focusable="false">
@@ -24,6 +24,14 @@ export function ProductCluster({ kind, className }: { kind: "snack" | "drink" | 
           <Bottle x={28} base={base} w={50} h={138} color={P.sky} accent={P.cream} />
           <Can x={86} base={base} w={56} h={96} color={P.paprika} />
           <Bottle x={150} base={base} w={46} h={124} color={P.mustard} accent={P.cream} />
+        </>
+      )}
+      {kind === "coffee" && (
+        <>
+          <Pouch x={18} base={base} w={66} h={92} color="#6B4330" accent="#2E1A10" />
+          <Steam cx={118} y={40} size={34} color={P.forest} />
+          <PaperCup x={88} base={base} w={62} h={104} />
+          <CeramicCup cx={182} base={base} w={46} foam />
         </>
       )}
       {kind === "combo" && (

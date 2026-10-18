@@ -51,7 +51,7 @@ export function Footer() {
             </Link>
             <p className="mt-5 font-display text-2xl font-semibold tracking-tight text-lime">{business.slogan}</p>
             <p className="mt-3 text-cream/75">
-              Moderne Snack- und Getränkeautomaten für Unternehmen und geeignete Standorte in der {business.serviceRegion.label}.
+              Moderne Snack-, Getränke- und Kaffeeautomaten für Unternehmen und geeignete Standorte in der {business.serviceRegion.label}.
             </p>
           </div>
 

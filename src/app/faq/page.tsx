@@ -8,7 +8,7 @@ import { JsonLd, faqJsonLd } from "@/lib/seo/json-ld";
 import { pageMetadata } from "@/lib/seo/metadata";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Häufige Fragen zu Snack- und Getränkeautomaten",
+  title: "Häufige Fragen zu Snack-, Getränke- und Kaffeeautomaten",
   description:
     "Antworten zu Automatenaufstellung, Standortvoraussetzungen, Sortiment, Zahlung, Kosten und Ablauf – ehrlich beantwortet von Snackora aus der Region Stuttgart.",
   path: "/faq",

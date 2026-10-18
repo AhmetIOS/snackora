@@ -79,7 +79,7 @@ export function HomeHero() {
             <Annotation className="top-[45%] -left-[24%] lg:-left-[30%]">
               Proteinriegel
             </Annotation>
-            <Annotation className="top-[33%] -right-[22%] lg:-right-[16%] xl:-right-[22%]">
+            <Annotation className="top-[33%] -right-[22%] lg:-right-[4%] xl:-right-[22%]">
               Kontaktlos*
             </Annotation>
           </div>

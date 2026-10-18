@@ -14,7 +14,7 @@ import { pageMetadata } from "@/lib/seo/metadata";
 export const metadata: Metadata = pageMetadata({
   title: "Snackautomaten für Unternehmen in der Region Stuttgart",
   description:
-    "Snack- und Getränkeautomaten für Büros, Produktion, Logistik und Gewerbe in Esslingen, Stuttgart und Umgebung: individuell geplant, transparent vereinbart. Jetzt anfragen.",
+    "Snack-, Getränke- und Kaffeeautomaten für Büros, Produktion, Logistik und Gewerbe in Esslingen, Stuttgart und Umgebung: individuell geplant, transparent vereinbart. Jetzt anfragen.",
   path: "/fuer-unternehmen",
 });
 
@@ -51,6 +51,11 @@ const assortmentProfiles = [
     items: ["Nüsse & Proteinriegel", "Müsli- & Fruchtriegel", "Zuckerfreie Getränke"],
   },
   {
+    name: "Kaffeepause",
+    text: "Für Teams, bei denen die Pause mit einem Kaffee beginnt – mit einem Kaffeeautomaten als Ergänzung oder Hauptlösung.",
+    items: ["Kaffee & Cappuccino", "Tee & Kakao", "Kekse & Riegel dazu"],
+  },
+  {
     name: "Schicht & Halle",
     text: "Für körperliche Arbeit und lange Schichten – sättigend und erfrischend.",
     items: ["Herzhafte Snacks", "Größere Getränkegebinde", "Isotonische Getränke"],
@@ -61,6 +66,7 @@ const requirements = [
   { title: "Stellfläche", text: "Ebener, gut erreichbarer Platz – z. B. im Pausenraum, Flur oder Eingangsbereich. Die Maße hängen vom Gerät ab." },
   { title: "Strom", text: "Eine Steckdose in der Nähe. Ob der Anschluss passt, prüfen wir bei der Standortbesichtigung." },
   { title: "Belüftung", text: "Gekühlte Automaten brauchen etwas Abstand zur Wand und sollten nicht direkt neben Heizungen stehen." },
+  { title: "Wasser", text: "Kaffeeautomaten benötigen je nach Gerät einen Festwasseranschluss oder arbeiten mit einem Tank, der regelmäßig befüllt wird." },
   { title: "Zugang", text: "Für Befüllung und Service muss der Automat zu vereinbarten Zeiten erreichbar sein." },
   { title: "Hausrecht", text: "Bei gemieteten Flächen sollte die Aufstellung mit Vermieter bzw. Hausverwaltung abgestimmt sein." },
 ];
@@ -172,11 +178,11 @@ export default function FuerUnternehmenPage() {
               </h2>
             </div>
             <p className="text-ink/75 lg:col-span-5">
-              Drei Beispielprofile als Ausgangspunkt. In der Praxis mischen wir sie nach Ihren Wünschen und passen das Angebot an,
+              Vier Beispielprofile als Ausgangspunkt. In der Praxis mischen wir sie nach Ihren Wünschen und passen das Angebot an,
               wenn sich zeigt, was gut ankommt.
             </p>
           </div>
-          <ul className="mt-12 grid gap-4 md:grid-cols-3">
+          <ul className="mt-12 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
             {assortmentProfiles.map((p, i) => (
               <li key={p.name} className="reveal rounded-panel border border-line bg-paper p-7">
                 <span className="slot-label rounded-[5px] bg-forest px-2 py-1 text-cream">Profil {String.fromCharCode(65 + i)}</span>
@@ -201,7 +207,7 @@ export default function FuerUnternehmenPage() {
           <div className="lg:col-span-4">
             <SlotLabel>Voraussetzungen</SlotLabel>
             <h2 id="voraussetzungen-title" className="type-h2 mt-5">
-              Platz, Strom, Zugang.
+              Platz, Strom, Zugang – bei Kaffee auch Wasser.
             </h2>
             <p className="mt-5 text-ink/75">
               Die technischen Anforderungen sind überschaubar. Was im Einzelfall nötig ist, klären wir bei einer
@@ -210,7 +216,7 @@ export default function FuerUnternehmenPage() {
           </div>
           <dl className="grid gap-px overflow-hidden rounded-panel border border-line bg-line sm:grid-cols-2 lg:col-span-8">
             {requirements.map((r, i) => (
-              <div key={r.title} className={`bg-cream p-6 sm:p-7 ${i === requirements.length - 1 ? "sm:col-span-2" : ""}`}>
+              <div key={r.title} className={`bg-cream p-6 sm:p-7 ${requirements.length % 2 === 1 && i === requirements.length - 1 ? "sm:col-span-2" : ""}`}>
                 <dt className="font-display text-xl font-semibold tracking-tight">{r.title}</dt>
                 <dd className="mt-2 text-ink/75">{r.text}</dd>
               </div>

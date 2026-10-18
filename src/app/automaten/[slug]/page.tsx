@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import { ArrowUpRight, Check } from "lucide-react";
 import { machinePhotos } from "@/content/media";
@@ -24,7 +25,31 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return pageMetadata({ title: m.seo.title, description: m.seo.description, path: `/automaten/${m.slug}` });
 }
 
-export default async function MachinePage({ params }: { params: Promise<{ slug: string }> }) {
+// Params are read inside <Suspense> so client navigations can render the
+// App Shell (with this fallback) instantly; known slugs are fully prerendered.
+export default function MachinePage({ params }: { params: Promise<{ slug: string }> }) {
+  return (
+    <Suspense fallback={<MachinePageFallback />}>
+      <MachinePageContent params={params} />
+    </Suspense>
+  );
+}
+
+function MachinePageFallback() {
+  return (
+    <section className="surface-dark bg-forest text-cream" aria-busy="true">
+      <div className="container-site pt-10 pb-24">
+        <div className="h-3 w-56 rounded bg-cream/10" />
+        <div className="mt-24 h-3 w-40 rounded bg-cream/10" />
+        <div className="mt-6 h-16 w-full max-w-xl rounded-key bg-cream/10" />
+        <div className="mt-6 h-6 w-full max-w-lg rounded bg-lime/20" />
+        <div className="mt-8 h-24 w-full max-w-2xl rounded bg-cream/5" />
+      </div>
+    </section>
+  );
+}
+
+async function MachinePageContent({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const m = getMachine(slug);
   if (!m) notFound();
