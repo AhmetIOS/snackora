@@ -1,5 +1,387 @@
 @import "tailwindcss";
 
-@theme inline {
-  --font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+/* ==========================================================================
+   Snackora design tokens
+   Brand colours are defined once here and exposed to Tailwind via @theme.
+   See BRAND_GUIDELINES.md for usage rules and contrast notes.
+   ========================================================================== */
+
+@theme {
+  /* Brand */
+  --color-ink: #0e1a14; /* text, darkest surfaces */
+  --color-forest: #12382a; /* primary */
+  --color-forest-deep: #0b2419; /* dark sections */
+  --color-moss: #2f5d47; /* secondary */
+  --color-lime: #c9f26b; /* accent – on dark surfaces or as fill with ink text */
+  --color-lime-soft: #e6f8b8;
+  --color-cream: #f5f1e6; /* page background */
+  --color-paper: #fbf9f3; /* raised surface */
+  --color-sand: #ebe5d5; /* alternate surface */
+  --color-line: #d9d2c0; /* borders on light */
+  --color-line-dark: #2a4a3c; /* borders on dark */
+  --color-muted: #55615a; /* secondary text on light (≥ 5.5:1 on cream) */
+  --color-muted-dark: #a9bbb1; /* secondary text on forest (≥ 6:1) */
+
+  /* Illustration accents (never for text) */
+  --color-paprika: #e2552d;
+  --color-mustard: #f1b734;
+  --color-sky: #9ccbe6;
+  --color-berry: #b2456e;
+
+  /* Feedback */
+  --color-error: #b3261e;
+  --color-error-soft: #fbe9e7;
+  --color-success: #1f7a4a;
+  --color-success-soft: #e3f3e9;
+
+  /* Typography */
+  --font-display: var(--font-bricolage), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-dm-mono), ui-monospace, "SFMono-Regular", monospace;
+
+  /* Radii – deliberately moderate; the brand is built on "Fächer", not pills */
+  --radius-key: 0.875rem; /* buttons / keypad keys */
+  --radius-panel: 1.25rem; /* panels, cards */
+
+  /* Motion */
+  --ease-snap: cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  --breakpoint-xs: 25rem;
+}
+
+:root {
+  --header-h: 4.5rem;
+  --focus-ring: var(--color-forest);
+  --focus-ring-offset: var(--color-cream);
+  color-scheme: light;
+}
+
+/* Dark sections re-map the focus ring so it stays visible */
+.surface-dark {
+  --focus-ring: var(--color-lime);
+  --focus-ring-offset: var(--color-forest);
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: calc(var(--header-h) + 1.5rem);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  body {
+    background: var(--color-cream);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 650;
+    letter-spacing: -0.025em;
+    line-height: 1.04;
+    text-wrap: balance;
+    /* Long German compounds: allow breaks rather than overflowing */
+    overflow-wrap: break-word;
+    hyphens: manual;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  /* Long German compounds on very narrow screens */
+  @media (max-width: 30rem) {
+    p,
+    li,
+    dd,
+    h3 {
+      hyphens: auto;
+      overflow-wrap: break-word;
+    }
+  }
+
+  ::selection {
+    background: var(--color-lime);
+    color: var(--color-ink);
+  }
+
+  :focus-visible {
+    outline: 2.5px solid var(--focus-ring);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+
+  a {
+    text-underline-offset: 0.2em;
+    text-decoration-thickness: 1px;
+  }
+
+  summary {
+    cursor: pointer;
+  }
+
+  summary::-webkit-details-marker {
+    display: none;
+  }
+}
+
+@layer components {
+  .container-site {
+    width: 100%;
+    max-width: 82rem;
+    margin-inline: auto;
+    padding-inline: 1rem;
+  }
+  @media (min-width: 40rem) {
+    .container-site {
+      padding-inline: 1.75rem;
+    }
+  }
+  @media (min-width: 64rem) {
+    .container-site {
+      padding-inline: 2.5rem;
+    }
+  }
+
+  /* Display scale (fluid). Tuned so German headlines wrap gracefully at 320px. */
+  .type-hero {
+    font-size: clamp(3rem, 1.45rem + 7.2vw, 7.5rem);
+    line-height: 0.92;
+    letter-spacing: -0.032em;
+    font-variation-settings: "opsz" 96;
+  }
+  .type-h1 {
+    font-size: clamp(2.25rem, 1.35rem + 3.9vw, 4.75rem);
+    line-height: 0.98;
+    letter-spacing: -0.035em;
+    font-variation-settings: "opsz" 72;
+  }
+  .type-h2 {
+    font-size: clamp(1.9rem, 1.3rem + 2.5vw, 3.5rem);
+    line-height: 1.02;
+    letter-spacing: -0.03em;
+    font-variation-settings: "opsz" 48;
+  }
+  .type-h3 {
+    font-size: clamp(1.3rem, 1.15rem + 0.6vw, 1.65rem);
+    line-height: 1.15;
+    letter-spacing: -0.015em;
+  }
+  .type-lead {
+    font-size: clamp(1.1rem, 1.02rem + 0.4vw, 1.3rem);
+    line-height: 1.55;
+  }
+
+  /* Mono "slot" label – the brand's small typographic signature */
+  .slot-label {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* Long-form text (legal pages, FAQ answers) */
+  .prose-snackora {
+    max-width: 44rem;
+    min-width: 0;
+    color: var(--color-ink);
+    overflow-wrap: break-word;
+    hyphens: auto;
+  }
+  .prose-snackora > * + * {
+    margin-top: 1rem;
+  }
+  .prose-snackora h2 {
+    font-size: 1.6rem;
+    margin-top: 3rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--color-line);
+  }
+  .prose-snackora h3 {
+    font-size: 1.2rem;
+    margin-top: 2rem;
+    letter-spacing: -0.01em;
+  }
+  .prose-snackora ul {
+    list-style: none;
+    padding: 0;
+  }
+  .prose-snackora ul > li {
+    position: relative;
+    padding-left: 1.4rem;
+  }
+  .prose-snackora ul > li + li {
+    margin-top: 0.4rem;
+  }
+  .prose-snackora ul > li::before {
+    content: "";
+    position: absolute;
+    left: 0.15rem;
+    top: 0.62em;
+    width: 0.45rem;
+    height: 0.45rem;
+    background: var(--color-forest);
+    border-radius: 1.5px;
+  }
+  .prose-snackora a {
+    color: var(--color-forest);
+    text-decoration: underline;
+    font-weight: 500;
+  }
+  .prose-snackora address {
+    font-style: normal;
+  }
+
+  /* Subtle editorial grid texture for brand surfaces */
+  .bg-rails {
+    background-image: linear-gradient(to right, rgb(14 26 20 / 0.06) 1px, transparent 1px);
+    background-size: calc(100% / 6) 100%;
+  }
+  .surface-dark .bg-rails,
+  .bg-rails-dark {
+    background-image: linear-gradient(to right, rgb(245 241 230 / 0.07) 1px, transparent 1px);
+    background-size: calc(100% / 6) 100%;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Motion – progressive and restrained. Content is fully visible without it.
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .reveal {
+      animation: reveal-up linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 40%;
+    }
+  }
+
+  .anim-fade-up {
+    animation: fade-up 0.8s var(--ease-snap) both;
+  }
+  .anim-delay-1 {
+    animation-delay: 0.08s;
+  }
+  .anim-delay-2 {
+    animation-delay: 0.16s;
+  }
+  .anim-delay-3 {
+    animation-delay: 0.24s;
+  }
+
+  /* The hero product block "drops" into the shelf once on load */
+  .anim-dispense {
+    animation: dispense 1.1s 0.5s var(--ease-snap) both;
+  }
+
+  details[data-accordion]::details-content {
+    transition:
+      height 0.3s var(--ease-snap),
+      content-visibility 0.3s allow-discrete;
+    height: 0;
+    overflow: clip;
+  }
+  details[data-accordion][open]::details-content {
+    height: auto;
+  }
+  @supports (interpolate-size: allow-keywords) {
+    :root {
+      interpolate-size: allow-keywords;
+    }
+  }
+}
+
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(1.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(0.9rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes dispense {
+  0% {
+    transform: translateY(-14px);
+    opacity: 0;
+  }
+  60% {
+    transform: translateY(2px);
+    opacity: 1;
+  }
+  100% {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Header & mobile navigation
+   -------------------------------------------------------------------------- */
+html[data-scrolled] .site-header {
+  border-color: var(--color-line);
+}
+
+html:has(dialog.mobile-nav[open]) {
+  overflow: hidden;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  dialog.mobile-nav {
+    transition:
+      opacity 0.25s var(--ease-snap),
+      transform 0.35s var(--ease-snap),
+      overlay 0.35s allow-discrete,
+      display 0.35s allow-discrete;
+    opacity: 0;
+    transform: translateY(-0.75rem);
+  }
+  dialog.mobile-nav[open] {
+    opacity: 1;
+    transform: none;
+  }
+  @starting-style {
+    dialog.mobile-nav[open] {
+      opacity: 0;
+      transform: translateY(-0.75rem);
+    }
+  }
 }
