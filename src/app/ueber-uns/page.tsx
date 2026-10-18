@@ -34,6 +34,11 @@ const principles = [
 ];
 
 export default function UeberUnsPage() {
+  const initials = business.owner
+    .split(/\s+/)
+    .map((part) => part[0])
+    .join("")
+    .toUpperCase();
   return (
     <>
       <PageHero
@@ -71,7 +76,7 @@ export default function UeberUnsPage() {
               <BrandSymbol tile={false} className="pointer-events-none absolute -right-10 -bottom-10 size-48 text-forest-deep" />
               <div className="relative">
                 <span className="grid size-16 place-items-center rounded-key bg-lime font-display text-2xl font-semibold text-ink" aria-hidden="true">
-                  AD
+                  {initials}
                 </span>
                 <p className="slot-label mt-8 text-muted-dark">Inhaber</p>
                 <p className="mt-2 font-display text-3xl font-semibold tracking-tight">{business.owner}</p>

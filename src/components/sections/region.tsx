@@ -31,9 +31,6 @@ export function RegionSection() {
           <div className="overflow-hidden rounded-panel border border-line bg-paper p-3 sm:p-6">
             <RegionMap className="h-auto w-full" />
           </div>
-          <figcaption className="mt-3 text-xs text-muted">
-            Schematische Darstellung des Schwerpunktgebiets. Die Karte zeigt keine bestehenden Automatenstandorte.
-          </figcaption>
         </figure>
       </div>
     </section>

@@ -70,10 +70,6 @@ export function MachineWrapConcept() {
           <p className="mt-1 text-ink/70">Angeschnittenes Fach-S und senkrechter Slogan – wiedererkennbar auch ohne Schriftzug.</p>
         </li>
       </ul>
-      <figcaption className="mt-6 text-xs text-muted">
-        Designkonzept zur Anwendung der Marke. Die tatsächliche Gestaltung richtet sich nach dem eingesetzten Gerät und der Vereinbarung
-        am Standort.
-      </figcaption>
     </figure>
   );
 }

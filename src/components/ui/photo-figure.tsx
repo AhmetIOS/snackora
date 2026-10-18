@@ -2,7 +2,7 @@ import Image from "next/image";
 import type { Photo } from "@/content/media";
 import { cn } from "@/lib/utils";
 
-/** Renders a configured photo with the required "Symbolbild" / credit caption. */
+/** Renders a configured photo; shows a caption only when a credit is configured. */
 export function PhotoFigure({
   photo,
   className,
@@ -18,7 +18,7 @@ export function PhotoFigure({
   preload?: boolean;
   tone?: "light" | "dark";
 }) {
-  const caption = [photo.symbolic ? "Symbolbild" : null, photo.credit].filter(Boolean).join(" · ");
+  const caption = photo.credit;
   return (
     <figure className={className}>
       <Image

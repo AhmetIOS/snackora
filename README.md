@@ -1,6 +1,6 @@
 # Snackora – snackora.de
 
-Website for **Snackora** (Inhaber: Ahmet Durmuş), a vending business in the Stuttgart region. Slogan: **„Deine Pause. Jederzeit."**
+Website for **Snackora** (Inhaber: Mehtap Durmus), a vending business in the Stuttgart region. Slogan: **„Deine Pause. Jederzeit."**
 
 It is a single Next.js application covering the brand website, the lead forms, the server-side inquiry handling and e-mail delivery. It deploys to Vercel as one project.
 

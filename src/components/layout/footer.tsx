@@ -102,7 +102,7 @@ export function Footer() {
 
         <div className="mt-16 flex flex-col gap-4 border-t border-line-dark pt-6 text-sm text-cream/65 md:flex-row md:items-center md:justify-between">
           <p>
-            © <CopyrightYear /> {business.brand} · Inhaber: {business.owner}
+            © <CopyrightYear /> {business.brand}
           </p>
           <ul className="flex flex-wrap gap-x-6 gap-y-2">
             {legalNav.map((l) => (

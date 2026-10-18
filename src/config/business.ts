@@ -68,8 +68,8 @@ export interface BusinessConfig {
 export const business: BusinessConfig = {
   brand: "Snackora",
   slogan: "Deine Pause. Jederzeit.",
-  legalName: "Snackora – Inhaber: Ahmet Durmuş",
-  owner: "Ahmet Durmuş",
+  legalName: "Snackora – Inhaber: Mehtap Durmus",
+  owner: "Mehtap Durmus",
   legalForm: "Einzelunternehmen",
   address: {
     street: "Hohestr.",
@@ -80,7 +80,7 @@ export const business: BusinessConfig = {
   },
   email: {
     address: "kontakt@snackora.de",
-    status: "planned", // TODO: set to "active" once the mailbox works
+    status: "active",
   },
   phone: null,
   vatId: null,

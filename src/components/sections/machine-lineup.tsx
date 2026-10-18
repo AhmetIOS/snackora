@@ -57,30 +57,31 @@ export function MachineLineup({
           </div>
         </div>
 
-        <ul className="mt-10 grid gap-4 md:mt-14 md:grid-cols-2 md:gap-5 xl:grid-cols-4">
+        <ul className="mt-8 grid gap-3 md:mt-14 md:grid-cols-2 md:gap-5 xl:grid-cols-4">
           {machines.map((m) => (
             <li key={m.slug} className="reveal">
-              <article className="group relative grid h-full grid-cols-[6.5rem_1fr] overflow-hidden rounded-panel border border-line-dark bg-forest-deep transition-colors duration-300 hover:border-lime/60 sm:grid-cols-[9rem_1fr] md:flex md:flex-col [&>div:first-child]:min-h-32">
+              <article className="group relative grid h-full grid-cols-[5.5rem_1fr] items-stretch overflow-hidden rounded-panel border border-line-dark bg-forest-deep transition-colors duration-300 hover:border-lime/60 sm:grid-cols-[8rem_1fr] md:flex md:flex-col">
                 <div className={`relative overflow-hidden md:h-80 ${STAGE[m.illustration]}`}>
                   {machinePhotos[m.slug] ? (
-                    <Image src={machinePhotos[m.slug]!.src} alt="" fill sizes="(min-width: 768px) 33vw, 9rem" className="object-cover" />
+                    <Image src={machinePhotos[m.slug]!.src} alt="" fill sizes="(min-width: 768px) 33vw, 8rem" className="object-cover" />
                   ) : (
                     <>
-                      {/* desktop: machine + product still-life; mobile: products only */}
+                      {/* the machine itself – instantly readable as "Automat", also as a small thumbnail */}
                       <MachineIllustration
                         kind={m.illustration}
                         decorative
-                        className="absolute bottom-0 left-[10%] hidden h-[90%] w-auto transition-transform duration-500 ease-snap group-hover:-translate-y-1.5 md:block"
+                        className="absolute top-1/2 left-1/2 h-[80%] w-auto -translate-x-1/2 -translate-y-1/2 transition-transform duration-500 ease-snap md:top-auto md:bottom-0 md:left-[10%] md:h-[90%] md:translate-x-0 md:translate-y-0 md:group-hover:-translate-y-1.5"
                       />
+                      {/* desktop only: product still-life beside the machine */}
                       <ProductCluster
                         kind={m.illustration}
-                        className="absolute inset-x-2 top-1/2 h-auto w-[calc(100%-1rem)] -translate-y-1/2 md:inset-x-auto md:top-auto md:right-[4%] md:bottom-0 md:w-[52%] md:translate-y-0"
+                        className="absolute right-[4%] bottom-0 hidden h-auto w-[52%] md:block"
                       />
                     </>
                   )}
                 </div>
-                <div className="flex min-w-0 flex-1 flex-col p-5 sm:p-6 md:p-7">
-                  <h3 className="type-h3 hyphens-auto xl:text-[1.4rem]">
+                <div className="flex min-w-0 flex-1 flex-col justify-center p-4 sm:p-6 md:justify-start md:p-7">
+                  <h3 className="font-display text-[1.15rem] leading-tight font-semibold tracking-tight hyphens-auto sm:text-xl md:text-[1.4rem]">
                     <Link
                       href={`/automaten/${m.slug}`}
                       prefetch
@@ -89,12 +90,14 @@ export function MachineLineup({
                       {m.name}
                     </Link>
                   </h3>
-                  <p className="mt-2 text-[0.95rem] text-cream/75 md:mt-3 md:text-base">{m.teaser}</p>
+                  {/* mobile: one short line; desktop: full teaser + differentiator */}
+                  <p className="mt-1.5 text-sm leading-snug text-cream/75 md:hidden">{m.differentiator}</p>
+                  <p className="mt-3 hidden text-base text-cream/75 md:block">{m.teaser}</p>
                   <p className="mt-5 hidden items-start gap-2.5 border-t border-line-dark pt-5 text-sm font-medium text-cream md:flex">
                     <span aria-hidden="true" className="mt-1.5 size-2 shrink-0 rounded-[2px] bg-lime" />
                     {m.differentiator}
                   </p>
-                  <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-lime md:mt-6" aria-hidden="true">
+                  <span className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-lime md:mt-6 md:gap-2" aria-hidden="true">
                     Mehr erfahren
                     <ArrowUpRight className="size-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                   </span>
