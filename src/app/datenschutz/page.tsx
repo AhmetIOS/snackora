@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { business, isEmailActive } from "@/config/business";
-import { LegalAddress, Pending, ReviewNotice } from "@/components/legal/legal";
+import { LegalAddress, Pending } from "@/components/legal/legal";
 import { PageHero } from "@/components/sections/page-hero";
 import { pageMetadata } from "@/lib/seo/metadata";
 
@@ -26,14 +26,6 @@ const toc = [
 ] as const;
 
 export default function DatenschutzPage() {
-  const review = [
-    "Zoho-Konto im EU-Rechenzentrum (zoho.eu) anlegen und den Auftragsverarbeitungsvertrag mit Zoho abschließen.",
-    "Auftragsverarbeitungsverträge (DPA) mit Vercel, Resend (falls genutzt) und Upstash (falls genutzt) abschließen bzw. akzeptieren.",
-    "Einstellung emailDelivery in src/config/business.ts mit der tatsächlichen Konfiguration (Resend oder SMTP) abgleichen.",
-    "Aktuelle Rechtsgrundlagen für Drittlandübermittlungen (DPF-Zertifizierung bzw. Standardvertragsklauseln) der Anbieter prüfen.",
-    "Gewählte Regionen (Vercel Functions, Resend, Upstash) mit den Angaben in dieser Erklärung abgleichen.",
-    "Angaben insgesamt rechtlich prüfen lassen und danach legalReviewCompleted = true setzen.",
-  ];
 
   return (
     <>
@@ -43,7 +35,7 @@ export default function DatenschutzPage() {
         title={"Datenschutz\u00ADerklärung"}
         lead="Wir verarbeiten nur die Daten, die für den Betrieb dieser Website und die Bearbeitung Ihrer Anfragen nötig sind. Diese Seite erklärt, welche das sind."
       />
-      <div className="container-site grid grid-cols-1 gap-12 py-14 sm:py-20 lg:grid-cols-12">
+      <div className="container-site grid grid-cols-1 gap-12 py-10 sm:py-14 lg:grid-cols-12">
         <nav aria-label="Inhalt der Datenschutzerklärung" className="min-w-0 lg:col-span-3">
           <div className="lg:sticky lg:top-[calc(var(--header-h)+2rem)]">
             <p className="slot-label text-muted">Inhalt</p>
@@ -61,8 +53,6 @@ export default function DatenschutzPage() {
         </nav>
 
         <div className="prose-snackora lg:col-span-8 lg:col-start-5">
-          {!business.legalReviewCompleted ? <ReviewNotice items={review} /> : null}
-
           <h2 id="verantwortlicher">1. Verantwortlicher</h2>
           <p>Verantwortlich für die Datenverarbeitung auf dieser Website im Sinne der Datenschutz-Grundverordnung (DSGVO) ist:</p>
           <LegalAddress />

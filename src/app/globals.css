@@ -215,6 +215,12 @@
     padding-top: 1.25rem;
     border-top: 1px solid var(--color-line);
   }
+  /* The first heading sits directly under the page hero: no rule, no extra gap. */
+  .prose-snackora > h2:first-child {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: 0;
+  }
   .prose-snackora h3 {
     font-size: 1.2rem;
     margin-top: 2rem;

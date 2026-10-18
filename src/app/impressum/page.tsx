@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { business, hasLegalAddress, isEmailActive } from "@/config/business";
-import { LegalAddress, Pending, ReviewNotice } from "@/components/legal/legal";
+import { business, isEmailActive } from "@/config/business";
+import { LegalAddress, Pending } from "@/components/legal/legal";
 import { PageHero } from "@/components/sections/page-hero";
 import { pageMetadata } from "@/lib/seo/metadata";
 
@@ -12,20 +12,11 @@ export const metadata: Metadata = pageMetadata({
 });
 
 export default function ImpressumPage() {
-  const review: string[] = [];
-  if (!hasLegalAddress()) review.push("Ladungsfähige Anschrift (Straße, Hausnummer, PLZ, Ort) in src/config/business.ts eintragen.");
-  if (!isEmailActive) review.push(`Funktionsfähigkeit des Postfachs ${business.email.address} bestätigen.`);
-  review.push("Prüfen, ob eine Umsatzsteuer-Identifikationsnummer oder Wirtschafts-Identifikationsnummer zugeteilt wurde (nur dann angeben).");
-  review.push("Prüfen, ob eine Eintragung im Handelsregister besteht (nur dann angeben).");
-  review.push("Prüfen, ob für die Automatenaufstellung besondere Angaben (z. B. Aufsichtsbehörde) erforderlich sind.");
-
   return (
     <>
       <PageHero crumbs={[{ name: "Impressum", href: "/impressum" }]} eyebrow="Rechtliches" title="Impressum" />
-      <div className="container-site py-14 sm:py-20">
+      <div className="container-site py-10 sm:py-14">
         <div className="prose-snackora">
-          <ReviewNotice items={review} />
-
           <h2>Angaben gemäß § 5 DDG</h2>
           <LegalAddress />
           <p>Rechtsform: {business.legalForm}</p>

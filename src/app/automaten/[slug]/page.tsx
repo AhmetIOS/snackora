@@ -37,13 +37,13 @@ export default function MachinePage({ params }: { params: Promise<{ slug: string
 
 function MachinePageFallback() {
   return (
-    <section className="surface-dark bg-forest text-cream" aria-busy="true">
+    <section className="border-b border-line bg-cream" aria-busy="true">
       <div className="container-site pt-10 pb-24">
-        <div className="h-3 w-56 rounded bg-cream/10" />
-        <div className="mt-24 h-3 w-40 rounded bg-cream/10" />
-        <div className="mt-6 h-16 w-full max-w-xl rounded-key bg-cream/10" />
-        <div className="mt-6 h-6 w-full max-w-lg rounded bg-lime/20" />
-        <div className="mt-8 h-24 w-full max-w-2xl rounded bg-cream/5" />
+        <div className="h-3 w-56 rounded bg-ink/8" />
+        <div className="mt-24 h-3 w-40 rounded bg-ink/8" />
+        <div className="mt-6 h-16 w-full max-w-xl rounded-key bg-ink/8" />
+        <div className="mt-6 h-6 w-full max-w-lg rounded bg-forest/15" />
+        <div className="mt-8 h-24 w-full max-w-2xl rounded bg-ink/5" />
       </div>
     </section>
   );
@@ -58,10 +58,9 @@ async function MachinePageContent({ params }: { params: Promise<{ slug: string }
 
   return (
     <>
-      <section className="surface-dark relative overflow-hidden bg-forest text-cream">
+      <section className="relative overflow-hidden border-b border-line bg-cream text-ink">
         <div className="container-site relative pt-8 sm:pt-10">
           <Breadcrumbs
-            tone="dark"
             items={[
               { name: "Automaten", href: "/automaten" },
               { name: m.name, href: `/automaten/${m.slug}` },
@@ -69,32 +68,29 @@ async function MachinePageContent({ params }: { params: Promise<{ slug: string }
           />
           <div className="grid gap-10 pt-10 lg:grid-cols-12 lg:items-end lg:pt-14">
             <div className="pb-6 lg:col-span-7 lg:pb-24">
-              <SlotLabel tone="dark">
-                Automatenlösung
-              </SlotLabel>
+              <SlotLabel>Automatenlösung</SlotLabel>
               <h1 className="type-h1 anim-fade-up mt-5">{m.name}</h1>
-              <p className="anim-fade-up anim-delay-1 mt-4 font-display text-[clamp(1.25rem,1rem+1vw,1.75rem)] leading-snug font-medium text-lime">
+              <p className="anim-fade-up anim-delay-1 mt-4 font-display text-[clamp(1.25rem,1rem+1vw,1.75rem)] leading-snug font-medium text-forest">
                 {m.tagline}
               </p>
-              <p className="type-lead anim-fade-up anim-delay-2 mt-6 max-w-2xl text-cream/80">{m.intro[0]}</p>
+              <p className="type-lead anim-fade-up anim-delay-2 mt-6 max-w-2xl text-ink/75">{m.intro[0]}</p>
               <div className="anim-fade-up anim-delay-3 mt-9 flex flex-col gap-3 xs:flex-row xs:flex-wrap">
-                <ButtonLink href={requestHref} variant="accent" size="lg">
+                <ButtonLink href={requestHref} size="lg">
                   {m.singular} anfragen
                 </ButtonLink>
-                <ButtonLink href="/standort-anbieten" variant="outline-dark" size="lg">
+                <ButtonLink href="/standort-anbieten" variant="outline" size="lg">
                   Standort anbieten
                 </ButtonLink>
               </div>
             </div>
             {machinePhotos[m.slug] ? (
-              <PhotoFigure photo={machinePhotos[m.slug]!} preload tone="dark" sizes="(min-width: 1024px) 40vw, 100vw" className="pb-10 lg:col-span-5" />
+              <PhotoFigure photo={machinePhotos[m.slug]!} preload sizes="(min-width: 1024px) 40vw, 100vw" className="pb-10 lg:col-span-5" />
             ) : (
             <figure className="relative mx-auto w-full max-w-sm lg:col-span-5 lg:max-w-none">
               <div className="relative mx-auto aspect-[400/760] w-[min(64vw,16rem)] sm:w-[18rem] lg:w-[20rem]">
                 <div className="absolute inset-x-[-12%] bottom-0 h-[48%] rounded-t-[1.5rem] bg-lime/90" aria-hidden="true" />
-                <MachineIllustration kind={m.illustration} className="relative z-10 h-auto w-full drop-shadow-[0_24px_30px_rgb(0_0_0/0.35)]" />
+                <MachineIllustration kind={m.illustration} className="relative z-10 h-auto w-full drop-shadow-[0_24px_30px_rgb(14_26_20/0.25)]" />
               </div>
-              <figcaption className="py-3 text-xs text-cream/60">Illustration: Designkonzept. Gerät und Ausstattung werden individuell abgestimmt.</figcaption>
             </figure>
             )}
           </div>

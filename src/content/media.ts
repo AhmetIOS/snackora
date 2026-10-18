@@ -6,7 +6,7 @@
  * Rules (see BRAND_GUIDELINES.md → Bildsprache):
  *  - Real photos of actual Snackora machines/locations: symbolic = false.
  *  - Licensed stock or AI-generated images: symbolic = true → captioned
- *    "Symbolbild". Never show other brands' logos or invented locations.
+ *    flagged `symbolic` (not shown on the page). Never show other brands' logos or invented locations.
  */
 
 import type { MachineSlug } from "./machines";
@@ -16,7 +16,7 @@ export interface Photo {
   alt: string;
   width: number;
   height: number;
-  /** true → captioned as "Symbolbild" (stock / AI / illustrative photo). */
+  /** true = stock / AI / illustrative photo (documentation only, no visible label). */
   symbolic: boolean;
   /** Source / licence note, e.g. "Foto: Name, Unsplash-Lizenz". */
   credit?: string;

@@ -109,7 +109,7 @@ describe("server config", () => {
 describe("business configuration", () => {
   it("never ships invented legal data", () => {
     expect(business.legalForm).toBe("Einzelunternehmen");
-    expect(business.owner).toBe("Ahmet Durmuş");
+    expect(business.owner).toBe("Mehtap Durmus");
     expect(business.vatId).toBeNull();
     expect(business.register).toBeNull();
   });
