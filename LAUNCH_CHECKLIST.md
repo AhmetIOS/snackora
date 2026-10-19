@@ -44,7 +44,8 @@ Tick every item before announcing the website. `npm run check:launch` checks the
 - [ ] Resend domain `snackora.de` verified in region EU (DKIM + `send.` subdomain) – or Zoho SMTP configured
 - [ ] DMARC record set (`p=none` to start)
 - [ ] Business mailbox receives external mail and can reply
-- [ ] Env vars set in Vercel: `RESEND_API_KEY` (or `SMTP_*`), `CONTACT_EMAIL`, `EMAIL_FROM`, `NEXT_PUBLIC_SITE_URL`
+- [ ] Env vars set in Vercel: `RESEND_API_KEY` (or `SMTP_*`), `EMAIL_FROM`, `NEXT_PUBLIC_SITE_URL`; `CONTACT_EMAIL` empty
+- [ ] Kontakt test arrives in kontakt@, Standort test in standort@
 - [ ] Upstash env vars set (`UPSTASH_REDIS_REST_URL`, `UPSTASH_REDIS_REST_TOKEN`) and `RATE_LIMIT_SALT`
 - [ ] **Anfrage** form tested end to end on production; notification received
 - [ ] **Standort anbieten** form tested end to end; notification received

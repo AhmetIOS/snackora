@@ -1,6 +1,7 @@
 import { renderAcknowledgment, renderNotification, type InquiryRecord } from "@/lib/email/templates";
 import type { EmailTransport } from "@/lib/email/transport";
 import { RATE_LIMITS, hashKey, type RateLimiter } from "@/lib/security/rate-limit";
+import { inboxFor, type Inboxes } from "./routing";
 import { envelopeSchema, formSchemas, type ApiResponse, type InquiryData } from "./schema";
 
 /**
@@ -21,7 +22,14 @@ export interface Logger {
 
 export interface InquiryDeps {
   transport: EmailTransport | null;
-  email: { to: string[]; from: string; replyTo: string } | null;
+  email: {
+    inboxes: Inboxes;
+    /** Test override: send every form to these addresses instead. */
+    overrideTo?: string[] | null;
+    from: string;
+    /** Reply-To of the visitor acknowledgment; defaults to the routed inbox. */
+    replyTo?: string | null;
+  } | null;
   autoReply: boolean;
   limiter: RateLimiter;
   salt: string;
@@ -120,11 +128,13 @@ export async function processInquiry(body: unknown, ctx: { ip: string }, deps: I
   }
 
   const record: InquiryRecord = { id: createInquiryId(now()), createdAt: now(), data };
+  const inbox = inboxFor(data, deps.email.inboxes);
+  const recipients = deps.email.overrideTo?.length ? deps.email.overrideTo : [inbox];
   const notification = renderNotification(record);
   try {
     const res = await deps.transport.send({
       from: deps.email.from,
-      to: deps.email.to,
+      to: recipients,
       replyTo: data.fields.email,
       subject: notification.subject,
       html: notification.html,
@@ -132,7 +142,7 @@ export async function processInquiry(body: unknown, ctx: { ip: string }, deps: I
       idempotencyKey: `inquiry-${meta.submissionId}`,
       tags: [{ name: "form", value: form }],
     });
-    deps.logger.info("inquiry.delivered", { form, inquiryId: record.id, providerId: res.id });
+    deps.logger.info("inquiry.delivered", { form, inquiryId: record.id, inbox: recipients.join(","), providerId: res.id });
   } catch (err) {
     deps.logger.error("inquiry.email.failed", { form, inquiryId: record.id, reason: (err as Error).message });
     return fail(502, "delivery_failed");
@@ -152,7 +162,7 @@ export async function processInquiry(body: unknown, ctx: { ip: string }, deps: I
         await deps.transport.send({
           from: deps.email.from,
           to: [data.fields.email],
-          replyTo: deps.email.replyTo,
+          replyTo: deps.email.replyTo || inbox,
           subject: ack.subject,
           html: ack.html,
           text: ack.text,

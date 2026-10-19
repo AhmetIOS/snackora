@@ -35,9 +35,11 @@ const envSchema = z.object({
 export interface ServerConfig {
   email: {
     provider: { kind: "resend"; apiKey: string } | { kind: "smtp"; host: string; port: number; user: string; password: string };
-    to: string[];
+    /** CONTACT_EMAIL: if set, ALL forms go here instead of the routed inboxes (testing). */
+    overrideTo: string[] | null;
     from: string;
-    replyTo: string;
+    /** Reply-To of the visitor acknowledgment; null = the routed inbox. */
+    replyTo: string | null;
   } | null;
   /** Why e-mail is not configured (for logs only). */
   emailIssue: string | null;
@@ -54,7 +56,7 @@ export function readServerConfig(env: Record<string, string | undefined> = proce
   let email: ServerConfig["email"] = null;
   let emailIssue: string | null = null;
 
-  const to = emailList.safeParse(e.CONTACT_EMAIL ?? "");
+  const override = e.CONTACT_EMAIL ? emailList.safeParse(e.CONTACT_EMAIL) : null;
   const port = Number(e.SMTP_PORT || 465);
   // Resend takes precedence; SMTP (e.g. Zoho Mail) is the alternative.
   const provider: NonNullable<ServerConfig["email"]>["provider"] | null = e.RESEND_API_KEY
@@ -64,11 +66,11 @@ export function readServerConfig(env: Record<string, string | undefined> = proce
       : null;
 
   if (!provider) emailIssue = "No e-mail provider configured (RESEND_API_KEY or SMTP_HOST/SMTP_USER/SMTP_PASSWORD)";
-  else if (!to.success) emailIssue = "CONTACT_EMAIL missing or invalid";
+  else if (override && !override.success) emailIssue = "CONTACT_EMAIL invalid";
   else if (!e.EMAIL_FROM || !FROM_RE.test(e.EMAIL_FROM)) emailIssue = "EMAIL_FROM missing or invalid";
   else {
-    const replyTo = e.EMAIL_REPLY_TO && z.email().safeParse(e.EMAIL_REPLY_TO).success ? e.EMAIL_REPLY_TO : to.data[0];
-    email = { provider, to: to.data, from: e.EMAIL_FROM, replyTo };
+    const replyTo = e.EMAIL_REPLY_TO && z.email().safeParse(e.EMAIL_REPLY_TO).success ? e.EMAIL_REPLY_TO : null;
+    email = { provider, overrideTo: override?.success ? override.data : null, from: e.EMAIL_FROM, replyTo };
   }
 
   const upstash =

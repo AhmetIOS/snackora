@@ -40,6 +40,7 @@ The forms work locally only once a Resend API key is set (see [E-mail](#e-mail))
 | `npm run test:e2e` | Playwright end-to-end tests against a production build on port 3210 (desktop + mobile) |
 | `npm run check` | typecheck + lint + unit tests |
 | `npm run check:launch` | Lists missing legal/business data; exits with code 1 until everything is complete |
+| `npm run env:push` | Pushes `.env.vercel.local` (git-ignored) to Vercel; `-- --preview`, `-- --redeploy`, `-- --dry-run` |
 | `npm run brand:assets` | Regenerates every logo file, favicon and icon from the geometry source |
 | `npm run brand:social` | Regenerates the social sharing image and machine-wrap exports (needs `npm run dev` running) |
 
@@ -54,10 +55,10 @@ All variables are documented in [.env.example](.env.example).
 | `NEXT_PUBLIC_SITE_URL` | yes | Canonical URL, `https://snackora.de` in production |
 | `RESEND_API_KEY` | for forms* | Resend API key (server-only) |
 | `SMTP_HOST` / `SMTP_PORT` / `SMTP_USER` / `SMTP_PASSWORD` | for forms* | Alternative to Resend, e.g. Zoho Mail SMTP (paid plans) |
-| `CONTACT_EMAIL` | for forms | Inbox(es) receiving inquiries, comma-separated |
-| `EMAIL_FROM` | for forms | Sender on a verified domain, e.g. `Snackora Website <website@snackora.de>` |
+| `CONTACT_EMAIL` | no | **Test override only**: if set, all forms go there. Normal routing is per form in `src/config/business.ts` (`inboxes`) |
+| `EMAIL_FROM` | for forms | Sender on the verified domain: `Snackora <info@snackora.de>` |
 | `AUTO_REPLY_ENABLED` | no | `true` sends a confirmation to the visitor (default `false`) |
-| `EMAIL_REPLY_TO` | no | Reply-To of that confirmation (default: first `CONTACT_EMAIL`) |
+| `EMAIL_REPLY_TO` | no | Reply-To of that confirmation (default: the form's inbox) |
 | `UPSTASH_REDIS_REST_URL` / `UPSTASH_REDIS_REST_TOKEN` | production | Distributed rate limiting |
 | `RATE_LIMIT_SALT` | no | Secret salt for pseudonymised rate-limit keys |
 
@@ -68,6 +69,7 @@ All variables are documented in [.env.example](.env.example).
 | What | File |
 | --- | --- |
 | **Legal & contact data** (address, e-mail, phone, VAT ID, mailbox provider, review flag) | `src/config/business.ts` |
+| **Which inbox gets which form** (kontakt@, standort@, kundenservice@) | `src/config/business.ts` (`inboxes`) + rules in `src/lib/inquiry/routing.ts` |
 | Navigation, sitemap routes, default SEO text | `src/config/site.ts` |
 | Machine categories – currently 4: Snack, Getränke, Kaffee, Kombi (creates `/automaten/[slug]` pages) | `src/content/machines.ts` |
 | FAQs (homepage preview via `home: true`) | `src/content/faqs.ts` |

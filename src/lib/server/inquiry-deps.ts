@@ -1,4 +1,5 @@
 import "server-only";
+import { business } from "@/config/business";
 import { createSmtpTransport } from "@/lib/email/smtp";
 import { createResendTransport, type EmailTransport } from "@/lib/email/transport";
 import type { InquiryDeps, Logger } from "@/lib/inquiry/process";
@@ -38,7 +39,9 @@ export function getInquiryDeps(env: Record<string, string | undefined> = process
 
   return {
     transport,
-    email: config.email ? { to: config.email.to, from: config.email.from, replyTo: config.email.replyTo } : null,
+    email: config.email
+      ? { inboxes: business.inboxes, overrideTo: config.email.overrideTo, from: config.email.from, replyTo: config.email.replyTo }
+      : null,
     autoReply: config.autoReply,
     limiter,
     salt: config.rateLimitSalt,

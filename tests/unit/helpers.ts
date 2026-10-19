@@ -19,7 +19,10 @@ export function makeDeps(overrides: Partial<InquiryDeps> = {}) {
   const logger = silentLogger();
   const deps: InquiryDeps = {
     transport,
-    email: { to: ["kontakt@snackora.de"], from: "Snackora Website <website@snackora.de>", replyTo: "kontakt@snackora.de" },
+    email: {
+      inboxes: { kontakt: "kontakt@snackora.de", standort: "standort@snackora.de", kundenservice: "kundenservice@snackora.de" },
+      from: "Snackora <info@snackora.de>",
+    },
     autoReply: false,
     limiter: createMemoryRateLimiter(() => NOW.getTime()),
     salt: "test",

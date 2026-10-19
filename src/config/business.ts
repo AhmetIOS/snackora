@@ -41,6 +41,15 @@ export interface BusinessConfig {
      */
     status: ContactChannelStatus;
   };
+  /**
+   * Existing Zoho Mail addresses that receive the website's form e-mails.
+   * Routing rules: src/lib/inquiry/routing.ts
+   */
+  inboxes: {
+    kontakt: string;
+    standort: string;
+    kundenservice: string;
+  };
   /** Public business phone, e.g. "+49 711 1234567". `null` hides the channel. */
   phone: string | null;
   /** USt-IdNr. – only if actually assigned by the Bundeszentralamt für Steuern. */
@@ -81,6 +90,11 @@ export const business: BusinessConfig = {
   email: {
     address: "kontakt@snackora.de",
     status: "active",
+  },
+  inboxes: {
+    kontakt: "kontakt@snackora.de",
+    standort: "standort@snackora.de",
+    kundenservice: "kundenservice@snackora.de",
   },
   phone: null,
   vatId: null,

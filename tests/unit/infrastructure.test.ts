@@ -67,7 +67,7 @@ describe("rate limiters", () => {
 
 describe("server config", () => {
   it("disables e-mail when credentials are incomplete", () => {
-    const c = readServerConfig({ RESEND_API_KEY: "k", CONTACT_EMAIL: "kontakt@snackora.de" });
+    const c = readServerConfig({ RESEND_API_KEY: "k" });
     expect(c.email).toBeNull();
     expect(c.emailIssue).toMatch(/EMAIL_FROM/);
     expect(c.autoReply).toBe(false);
@@ -83,10 +83,16 @@ describe("server config", () => {
       UPSTASH_REDIS_REST_TOKEN: "t",
     });
     expect(c.email?.provider.kind).toBe("resend");
-    expect(c.email?.to).toEqual(["kontakt@snackora.de", "anfrage@snackora.de"]);
-    expect(c.email?.replyTo).toBe("kontakt@snackora.de");
+    expect(c.email?.overrideTo).toEqual(["kontakt@snackora.de", "anfrage@snackora.de"]);
+    expect(c.email?.replyTo).toBeNull();
     expect(c.autoReply).toBe(true);
     expect(c.upstash?.url).toBe("https://eu1.upstash.io");
+  });
+
+  it("works without CONTACT_EMAIL (routing comes from the business config)", () => {
+    const c = readServerConfig({ RESEND_API_KEY: "k", EMAIL_FROM: "Snackora <info@snackora.de>" });
+    expect(c.email?.overrideTo).toBeNull();
+    expect(c.emailIssue).toBeNull();
   });
 
   it("supports SMTP (e.g. Zoho Mail) when no Resend key is set", () => {

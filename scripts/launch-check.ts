@@ -6,7 +6,7 @@ const issues = getLaunchIssues();
 const envHints: string[] = [];
 const hasProvider = Boolean(process.env.RESEND_API_KEY || (process.env.SMTP_HOST && process.env.SMTP_USER && process.env.SMTP_PASSWORD));
 if (!hasProvider) envHints.push("RESEND_API_KEY oder SMTP_HOST/SMTP_USER/SMTP_PASSWORD");
-for (const key of ["CONTACT_EMAIL", "EMAIL_FROM", "UPSTASH_REDIS_REST_URL", "UPSTASH_REDIS_REST_TOKEN"]) {
+for (const key of ["EMAIL_FROM", "UPSTASH_REDIS_REST_URL", "UPSTASH_REDIS_REST_TOKEN"]) {
   if (!process.env[key]) envHints.push(key);
 }
 
