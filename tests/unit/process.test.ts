@@ -17,10 +17,32 @@ describe("processInquiry", () => {
     expect(transport.sent).toHaveLength(1);
     const mail = transport.sent[0]!;
     expect(mail.to).toEqual(["kontakt@snackora.de"]);
-    expect(mail.from).toBe("Snackora Website <website@snackora.de>");
+    expect(mail.from).toBe("Snackora <info@snackora.de>");
     expect(mail.replyTo).toBe("erika@example.com"); // visitor address only as Reply-To, never as From
     expect(mail.idempotencyKey).toBe("inquiry-3f1c9a52-6a4b-4b7e-9a35-2d4f0b1c8e11");
     expect(mail.subject).toContain("SNK-261018-");
+  });
+
+  it("routes each form to its inbox", async () => {
+    const cases = [
+      { env: envelope("kontakt"), to: "kontakt@snackora.de" },
+      { env: envelope("standort"), to: "standort@snackora.de" },
+      { env: envelope("anfrage"), to: "kontakt@snackora.de" },
+      { env: envelope("anfrage", { ...validFields.anfrage, inquiryType: "standort" }), to: "standort@snackora.de" },
+    ];
+    for (const c of cases) {
+      const { deps, transport } = makeDeps();
+      expect((await processInquiry(c.env, ctx, deps)).status).toBe(200);
+      expect(transport.sent[0]!.to, JSON.stringify(c.env.fields)).toEqual([c.to]);
+      expect(transport.sent[0]!.replyTo).toBe(c.env.fields.email);
+    }
+  });
+
+  it("CONTACT_EMAIL override sends every form to the test address", async () => {
+    const { deps, transport } = makeDeps();
+    deps.email = { ...deps.email!, overrideTo: ["test@example.com"] };
+    await processInquiry(envelope("standort"), ctx, deps);
+    expect(transport.sent[0]!.to).toEqual(["test@example.com"]);
   });
 
   it("works for all three forms", async () => {
@@ -106,7 +128,7 @@ describe("processInquiry", () => {
     expect((await processInquiry(envelope("kontakt"), ctx, deps)).status).toBe(200);
     expect(t.sent).toHaveLength(2);
     expect(t.sent[1]!.to).toEqual(["max@example.com"]);
-    expect(t.sent[1]!.replyTo).toBe("kontakt@snackora.de");
+    expect(t.sent[1]!.replyTo).toBe("kontakt@snackora.de"); // the routed inbox
 
     const failingAck = createMemoryTransport({ fail: (m) => m.to[0] === "max@example.com" });
     const second = makeDeps({ transport: failingAck, autoReply: true });

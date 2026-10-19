@@ -106,7 +106,7 @@ Framework-independent and dependency-injected (transport, limiter, logger, clock
 4. **Fill time**: submissions faster than 2.5 s after render get 400 `too_fast`.
 5. **Validation**: Zod, per form. Single-line fields reject CR/LF and control characters (header injection). No links in names, at most 3 links in messages, length limits on every field.
 6. **Rate limits** with pseudonymised keys (salted SHA-256 of IP): 5 per IP per 10 min, 20 per IP per day, 300 globally per day. If the limiter is down, the request is allowed but the failure is logged.
-7. **Delivery**: business notification (`From` = configured sender, `Reply-To` = visitor, idempotency key).
+7. **Delivery**: business notification to the form's inbox (`src/lib/inquiry/routing.ts`: Kontakt → kontakt@, Standort → standort@, Anfrage → kontakt@ or standort@ by type), `From` = configured sender, `Reply-To` = visitor, idempotency key.
 8. **Optional acknowledgment** (`AUTO_REPLY_ENABLED`): at most 3 per recipient per day. It doesn't echo the free-text message (so it can't relay spam), and its failure never affects the result.
 
 **Logging** is structured JSON with event names only (`inquiry.delivered`, `inquiry.email.failed`, …) plus form type and reference number. No names, addresses, IPs or message content. Provider error bodies are discarded.

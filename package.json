@@ -14,7 +14,8 @@
     "check": "npm run typecheck && npm run lint && npm run test",
     "check:launch": "node scripts/launch-check.ts",
     "brand:assets": "node scripts/brand/build-assets.mjs",
-    "brand:social": "node scripts/brand/build-social.mjs"
+    "brand:social": "node scripts/brand/build-social.mjs",
+    "env:push": "node scripts/env-push.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.9.2",

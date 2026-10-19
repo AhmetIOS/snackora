@@ -39,8 +39,8 @@ Vercel → Project → **Settings → Environment Variables**. Set them for *Pro
 | --- | --- |
 | `NEXT_PUBLIC_SITE_URL` | `https://snackora.de` |
 | `RESEND_API_KEY` | `re_…` (Resend → API Keys → *Sending access*, restricted to `snackora.de`) |
-| `CONTACT_EMAIL` | `kontakt@snackora.de` |
-| `EMAIL_FROM` | `Snackora Website <website@snackora.de>` |
+| `EMAIL_FROM` | `Snackora <info@snackora.de>` |
+| `CONTACT_EMAIL` | leave **empty** (test override only – forms are routed to kontakt@ / standort@ automatically) |
 | `AUTO_REPLY_ENABLED` | `false` at first, `true` once delivery is tested |
 | `UPSTASH_REDIS_REST_URL` / `UPSTASH_REDIS_REST_TOKEN` | from Upstash (section 6) |
 | `RATE_LIMIT_SALT` | any long random string, e.g. `openssl rand -hex 32` |
@@ -48,6 +48,21 @@ Vercel → Project → **Settings → Environment Variables**. Set them for *Pro
 *Alternative without Resend (Zoho SMTP, paid Zoho plan only):* leave `RESEND_API_KEY` empty and set `SMTP_HOST=smtppro.zoho.eu`, `SMTP_PORT=465`, `SMTP_USER=kontakt@snackora.de`, `SMTP_PASSWORD=<Zoho app-specific password>`, `EMAIL_FROM=Snackora Website <kontakt@snackora.de>`. Then set `emailDelivery: "smtp"` in `src/config/business.ts` so the privacy policy matches.
 
 Environment variable changes only take effect after a **redeploy**.
+
+### Managing the variables from your machine (recommended)
+
+Instead of typing them into the dashboard, keep them in a local file that is never committed:
+
+```bash
+npx vercel login && npx vercel link          # once
+cp .env.vercel.example .env.vercel.local     # fill in the values
+npm run env:push -- --dry-run                # check what will change
+npm run env:push -- --redeploy               # push to Production and redeploy
+```
+
+- `.env.vercel.local` is git-ignored; the script refuses to run if it is ever tracked.
+- Values go to the Vercel CLI via stdin (not visible in shell history or process lists); secrets are stored as *Sensitive* and printed as `••••`.
+- Empty values are skipped; `--remove-empty` deletes them in Vercel instead. `--preview` also updates the Preview environment.
 
 ## 4. Connect snackora.de (GoDaddy → Vercel)
 
