@@ -2,8 +2,10 @@ import Link from "next/link";
 import { cacheLife } from "next/cache";
 import { business, isEmailActive } from "@/config/business";
 import { legalNav } from "@/config/site";
+import { analyticsEnabled } from "@/config/analytics";
 import { machines } from "@/content/machines";
 import { BrandSymbol, Logo } from "@/components/brand/logo";
+import { ConsentSettingsLink } from "@/components/consent/consent-settings-link";
 
 async function CopyrightYear() {
   "use cache";
@@ -112,6 +114,11 @@ export function Footer() {
                 </Link>
               </li>
             ))}
+            {analyticsEnabled ? (
+              <li>
+                <ConsentSettingsLink className={linkClass} />
+              </li>
+            ) : null}
           </ul>
         </div>
       </div>

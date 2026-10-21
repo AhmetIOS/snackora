@@ -1,6 +1,7 @@
 import path from "node:path";
 import type { NextConfig } from "next";
 import { getLaunchIssues } from "./src/config/business";
+import { analyticsEnabled, gaCspSources } from "./src/config/analytics";
 
 const isProd = process.env.NODE_ENV === "production";
 
@@ -17,16 +18,18 @@ if (process.argv.includes("build")) {
 /**
  * Content-Security-Policy. Next.js injects inline scripts for streaming, so
  * script-src needs 'unsafe-inline' unless nonces are used (which would force
- * dynamic rendering of every page). Everything else is locked to 'self':
- * no third-party scripts, fonts, frames or connections exist on this site.
+ * dynamic rendering of every page). Everything else is locked to 'self'.
+ * The only third party is Google Analytics – allowed only when a measurement
+ * ID is configured, and loaded by the page only after consent.
  */
+const ga = (list: readonly string[]) => (analyticsEnabled ? ` ${list.join(" ")}` : "");
 const csp = [
   "default-src 'self'",
-  "script-src 'self' 'unsafe-inline'",
+  `script-src 'self' 'unsafe-inline'${ga(gaCspSources.script)}`,
   "style-src 'self' 'unsafe-inline'",
-  "img-src 'self' data: blob:",
+  `img-src 'self' data: blob:${ga(gaCspSources.img)}`,
   "font-src 'self'",
-  "connect-src 'self'",
+  `connect-src 'self'${ga(gaCspSources.connect)}`,
   "frame-ancestors 'none'",
   "base-uri 'self'",
   "form-action 'self'",

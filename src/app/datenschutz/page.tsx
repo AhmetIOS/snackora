@@ -4,6 +4,8 @@ import { business, isEmailActive } from "@/config/business";
 import { LegalAddress, Pending } from "@/components/legal/legal";
 import { PageHero } from "@/components/sections/page-hero";
 import { pageMetadata } from "@/lib/seo/metadata";
+import { analyticsEnabled } from "@/config/analytics";
+import { ConsentSettingsLink } from "@/components/consent/consent-settings-link";
 
 export const metadata: Metadata = pageMetadata({
   title: "Datenschutzerklärung",
@@ -19,7 +21,7 @@ const toc = [
   ["email-versand", "E-Mail-Versand"],
   ["missbrauchsschutz", "Schutz vor Missbrauch"],
   ["kommunikation", "Kommunikation per E-Mail und Telefon"],
-  ["cookies", "Cookies, Tracking und Schriftarten"],
+  ["cookies", analyticsEnabled ? "Cookies, Webanalyse und Schriftarten" : "Cookies, Tracking und Schriftarten"],
   ["speicherdauer", "Speicherdauer"],
   ["rechte", "Ihre Rechte"],
   ["sonstiges", "Sonstiges"],
@@ -69,9 +71,16 @@ export default function DatenschutzPage() {
 
           <h2 id="ueberblick">2. Überblick</h2>
           <ul>
-            <li>Diese Website setzt keine Cookies und verwendet keine Analyse-, Tracking- oder Werbedienste.</li>
+            {analyticsEnabled ? (
+              <li>
+                Cookies und die Webanalyse mit Google Analytics setzen wir nur ein, wenn Sie im Cookie-Banner einwilligen. Ohne
+                Einwilligung findet keine Reichweitenmessung statt. Werbedienste verwenden wir nicht.
+              </li>
+            ) : (
+              <li>Diese Website setzt keine Cookies und verwendet keine Analyse-, Tracking- oder Werbedienste.</li>
+            )}
             <li>Es werden keine externen Inhalte wie Karten, Videos oder Social-Media-Plugins eingebunden.</li>
-            <li>Schriftarten werden von unserem eigenen Server geladen; eine Verbindung zu Google findet nicht statt.</li>
+            <li>Schriftarten werden von unserem eigenen Server geladen; eine Verbindung zu Schriftservern von Google findet nicht statt.</li>
             <li>
               Personenbezogene Daten verarbeiten wir beim Aufruf der Website (technisch notwendige Server-Logfiles) und wenn Sie uns
               über ein Formular oder per E-Mail kontaktieren.
@@ -171,12 +180,62 @@ export default function DatenschutzPage() {
             {!isEmailActive ? " Unser E-Mail-Postfach befindet sich derzeit im Aufbau." : ""}
           </p>
 
-          <h2 id="cookies">8. Cookies, Tracking und Schriftarten</h2>
-          <p>
-            Diese Website verwendet keine Cookies und speichert keine Informationen auf Ihrem Endgerät, die einer Einwilligung nach
-            § 25 TDDDG bedürfen. Es findet keine Reichweitenmessung und kein Tracking statt. Ein Cookie-Banner ist daher nicht
-            erforderlich.
-          </p>
+          {analyticsEnabled ? (
+            <>
+              <h2 id="cookies">8. Cookies, Webanalyse und Schriftarten</h2>
+              <h3>Einwilligungsverwaltung</h3>
+              <p>
+                Beim ersten Besuch fragen wir Sie in einem Banner, ob Sie der Webanalyse zustimmen. Ihre Auswahl speichern wir im
+                lokalen Speicher Ihres Browsers (Schlüssel „snackora-consent“: Auswahl und Zeitpunkt), damit das Banner nicht bei
+                jedem Seitenaufruf erscheint. Diese Speicherung ist technisch erforderlich (§ 25 Abs. 2 Nr. 2 TDDDG, Art. 6 Abs. 1
+                lit. c und f DSGVO). Nach zwölf Monaten fragen wir erneut.
+              </p>
+              <p>
+                Sie können Ihre Einwilligung jederzeit mit Wirkung für die Zukunft ändern oder widerrufen:{" "}
+                <ConsentSettingsLink className="font-semibold text-forest underline">Cookie-Einstellungen öffnen</ConsentSettingsLink>{" "}
+                (auch im Fußbereich jeder Seite). Beim Widerruf werden die Analyse-Cookies gelöscht.
+              </p>
+
+              <h3>Google Analytics 4</h3>
+              <p>
+                Nur wenn Sie eingewilligt haben, nutzen wir Google Analytics 4, einen Webanalysedienst der Google Ireland Limited,
+                Gordon House, Barrow Street, Dublin 4, Irland („Google“). Erst dann wird das Skript von Google geladen. Google
+                Analytics setzt Cookies (z. B. „_ga“, „_ga_…“, Speicherdauer bis zu 2 Jahre) und verarbeitet Informationen über Ihre
+                Nutzung, etwa aufgerufene Seiten, Verweildauer, Herkunft des Besuchs (Referrer), ungefährer Standort (Land/Stadt,
+                abgeleitet aus der IP-Adresse), Gerätetyp, Browser und Bildschirmauflösung sowie, ob eine Anfrage über eines unserer
+                Formulare erfolgreich abgeschickt oder ein E-Mail-Link angeklickt wurde.
+              </p>
+              <p>
+                Formularinhalte wie Name, E-Mail-Adresse, Telefonnummer oder Ihre Nachricht übermitteln wir nicht an Google. IP-Adressen
+                werden von Google Analytics 4 nicht gespeichert; sie werden innerhalb der EU nur zur Bestimmung des ungefähren Standorts
+                verwendet und anschließend verworfen. Google-Signale und die Nutzung der Daten für Werbezwecke sind deaktiviert. Die
+                Daten werden auf Ebene einzelner Nutzer nach 14 Monaten automatisch gelöscht.
+              </p>
+              <p>
+                Zweck ist die statistische Auswertung der Nutzung, um unsere Website und unser Angebot zu verbessern und zu erkennen,
+                welche Inhalte zu Anfragen führen. Rechtsgrundlage ist Ihre Einwilligung (Art. 6 Abs. 1 lit. a DSGVO, § 25 Abs. 1
+                TDDDG). Mit Google besteht ein Vertrag zur Auftragsverarbeitung (Art. 28 DSGVO). Es kann nicht ausgeschlossen werden,
+                dass Daten an die Google LLC in den USA übermittelt werden. Google ist nach dem EU-US Data Privacy Framework
+                zertifiziert; die Übermittlung stützt sich auf den Angemessenheitsbeschluss der EU-Kommission (Art. 45 DSGVO) sowie
+                ergänzend auf Standardvertragsklauseln (Art. 46 Abs. 2 lit. c DSGVO). Weitere Informationen:{" "}
+                <a href="https://policies.google.com/privacy?hl=de" rel="noopener noreferrer" target="_blank">
+                  Datenschutzerklärung von Google
+                </a>
+                .
+              </p>
+
+              <h3>Schriftarten</h3>
+            </>
+          ) : (
+            <>
+              <h2 id="cookies">8. Cookies, Tracking und Schriftarten</h2>
+              <p>
+                Diese Website verwendet keine Cookies und speichert keine Informationen auf Ihrem Endgerät, die einer Einwilligung
+                nach § 25 TDDDG bedürfen. Es findet keine Reichweitenmessung und kein Tracking statt. Ein Cookie-Banner ist daher
+                nicht erforderlich.
+              </p>
+            </>
+          )}
           <p>
             Die verwendeten Schriftarten (Bricolage Grotesque, DM Sans, DM Mono) werden beim Erstellen der Website heruntergeladen
             und anschließend von unserem eigenen Server ausgeliefert. Beim Besuch der Website wird keine Verbindung zu Servern von

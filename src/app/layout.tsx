@@ -5,6 +5,8 @@ import { siteConfig } from "@/config/site";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { JsonLd, organizationJsonLd, websiteJsonLd } from "@/lib/seo/json-ld";
+import { GoogleAnalytics } from "@/components/analytics/google-analytics";
+import { ConsentBanner } from "@/components/consent/consent-banner";
 import "./globals.css";
 
 // Fonts are downloaded at build time and self-hosted by next/font –
@@ -30,7 +32,7 @@ const mono = DM_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: `Snack-, Getränke- & Kaffeeautomaten in Esslingen und Stuttgart | ${business.brand}`,
+    default: `Snack- & Getränkeautomaten für Firmen in Esslingen | ${business.brand}`,
     template: `%s | ${business.brand}`,
   },
   description: siteConfig.description,
@@ -75,6 +77,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         </main>
         <Footer />
         <JsonLd data={[organizationJsonLd(), websiteJsonLd()]} />
+        <ConsentBanner />
+        <GoogleAnalytics />
       </body>
     </html>
   );
