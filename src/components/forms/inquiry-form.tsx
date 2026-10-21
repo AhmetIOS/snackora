@@ -8,6 +8,8 @@ import { AlertCircle, Check, CheckCircle2, ChevronDown, Loader2, RotateCcw } fro
 import { formSchemas, type ApiResponse, type FormKind } from "@/lib/inquiry/schema";
 import { cn } from "@/lib/utils";
 import { formConfigs, type FieldDef } from "./form-configs";
+import { formSuccessEvents } from "@/lib/analytics/events";
+import { trackEvents } from "@/lib/analytics/gtag";
 
 type Status =
   | { state: "idle" }
@@ -121,6 +123,8 @@ export function InquiryForm({ kind, fallbackEmail }: { kind: FormKind; fallbackE
 
     if (res.ok && data?.ok) {
       setStatus({ state: "success", inquiryId: data.inquiryId });
+      // Conversion tracking only after the server confirmed delivery; no form contents are sent.
+      trackEvents(formSuccessEvents(kind, typeof rest.inquiryType === "string" ? rest.inquiryType : undefined));
       reset(emptyValues(kind));
       submissionId.current = newSubmissionId();
       startedAt.current = Date.now();

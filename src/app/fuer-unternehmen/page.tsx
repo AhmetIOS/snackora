@@ -14,7 +14,7 @@ import { pageMetadata } from "@/lib/seo/metadata";
 export const metadata: Metadata = pageMetadata({
   title: "Snackautomaten für Unternehmen in der Region Stuttgart",
   description:
-    "Snack-, Getränke- und Kaffeeautomaten für Büros, Produktion, Logistik und Gewerbe in Esslingen, Stuttgart und Umgebung: individuell geplant, transparent vereinbart. Jetzt anfragen.",
+    "Automaten für Büros, Produktion, Logistik und Gewerbe in Esslingen, Waiblingen und der Region Stuttgart – individuell geplant. Jetzt anfragen.",
   path: "/fuer-unternehmen",
 });
 

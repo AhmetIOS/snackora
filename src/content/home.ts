@@ -7,6 +7,8 @@ export const hero = {
   eyebrow: "Snack-, Getränke- & Kaffeeautomaten",
   // Official slogan – do not replace.
   headline: ["Deine Pause.", "Jederzeit."],
+  /** Descriptive part of the page's <h1> (read by search engines and screen readers before the slogan). */
+  seoHeadline: "Snack- und Getränkeautomaten für Unternehmen in Esslingen, Waiblingen und der Region Stuttgart",
   lead: "Moderne Snack-, Getränke- und Kaffeeautomaten für Unternehmen, Mitarbeitende und attraktive Standorte in der Region Stuttgart – individuell geplant und persönlich abgestimmt.",
   /** Shorter version for the compact mobile hero. */
   leadShort: "Snack-, Getränke- und Kaffeeautomaten für Unternehmen und Standorte in der Region Stuttgart – individuell geplant.",

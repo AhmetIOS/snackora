@@ -8,7 +8,7 @@ import { SlotLabel } from "@/components/ui/slot-label";
 import { pageMetadata } from "@/lib/seo/metadata";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Über Snackora",
+  title: "Über uns – inhabergeführt aus der Region Stuttgart",
   description:
     "Snackora ist ein inhabergeführtes Unternehmen aus der Region Stuttgart, das moderne Snack-, Getränke- und Kaffeeversorgung einfacher und zugänglicher machen möchte.",
   path: "/ueber-uns",

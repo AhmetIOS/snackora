@@ -50,3 +50,6 @@ next-env.d.ts
 # keep the documented example env file
 !.env.example
 !.env.vercel.example
+
+# generated Google reports (business data)
+/reports/
