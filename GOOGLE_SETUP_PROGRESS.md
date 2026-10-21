@@ -11,7 +11,7 @@
 | 0 | Proje ve erişim analizi | COMPLETED |
 | 1 | Google Cloud ve API erişimi | COMPLETED |
 | 2 | Search Console (domain property, DNS doğrulama, sitemap) | COMPLETED |
-| 3 | GA4 + çerez onayı (DSGVO/TDDDG) + dönüşüm event'leri | WAITING_FOR_USER (kod hazır ve test edildi; GA4 hesabı bekleniyor) |
+| 3 | GA4 + çerez onayı (DSGVO/TDDDG) + dönüşüm event'leri | WAITING_FOR_USER (GA4 yapılandırıldı; deploy onayı bekleniyor) |
 | 4 | Search Console ↔ GA4 bağlantısı | NOT_STARTED (GA4'ten sonra, manuel UI) |
 | 5 | Teknik SEO ve Almanca içerik | COMPLETED (branch'te, deploy bekliyor) |
 | 6 | Google Business Profile | BLOCKED (ertelendi – uygunluk kullanıcıyla netleşmeli) |
@@ -119,10 +119,21 @@
 ## Faz 3 – GA4 ve çerez onayı
 
 ### 3.1 GA4 hesap/property/stream
-- **Durum:** WAITING_FOR_USER
-- **Neden:** GA hesabı oluşturmak, Google'ın sözleşmesinin (ToS + DSGVO veri işleme şartları) tarayıcıda bir insan tarafından kabul edilmesini gerektiriyor.
-- **Gereken kullanıcı müdahalesi:** GA4 sihirbazı + servis hesabını Administrator olarak eklemek (adımlar: sabah raporu)
-- **Sonraki adım (otomatik):** Measurement ID'yi okumak, `generate_lead` key event, veri saklama 14 ay, Google Signals kapalı, Vercel Production env + deploy (onaydan sonra)
+- **Durum:** COMPLETED
+- **Yapılan işlem:** Kullanıcı GA4 sihirbazını tamamladı (veri paylaşımı kapalı, DSGVO şartları kabul edildi) ve SA'yı **Düzenleyici** olarak ekledi (en az yetki).
+- Hesap `accounts/412940097` "Snackora" · Property `properties/560118080` "Snackora" (Europe/Berlin, EUR, Business & Industrial Markets)
+- Web stream `16177526028` → `https://snackora.de` · **Measurement ID `G-E84G7MZFH5`**
+- **Test sonucu:** `accountSummaries.list` → property görünüyor, `canEdit: true` ✔
+
+### 3.1b GA4 ayarları (API)
+- **Durum:** COMPLETED
+- Key event: `generate_lead` (ONCE_PER_EVENT) ✔. Otomatik oluşturulanlar (`purchase`, `qualify_lead`, `close_convert_lead`) duruyor; site bunları hiç göndermiyor.
+- Data retention: event 2 → **14 ay**, user 14 ay, "reset on new activity" kapalı (Datenschutz metniyle uyumlu) ✔
+- Google Signals: kapalı (varsayılan, kontrol edildi) ✔
+- Custom dimensions (event): `form_name` "Formular", `lead_type` "Anfrageart", `link_location` "Link Seite" ✔
+- Enhanced measurement: açık, `pageChanges` açık (SPA page_view) ✔, **form interactions kapalı** (butona basınca `form_submit` gönderiyordu, başarılı gönderimden bağımsız) ✔
+- GA ID yerel `.env.vercel.local`'a eklendi (git-ignored). Vercel'e **henüz gönderilmedi**.
+- **Sonraki adım:** Kullanıcı onayı → Vercel Production env + merge/deploy → canlı test (Realtime/DebugView)
 
 ### 3.2 Çerez onayı (consent banner)
 - **Durum:** COMPLETED (kodda)
