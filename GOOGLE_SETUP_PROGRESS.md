@@ -12,7 +12,7 @@
 | 1 | Google Cloud ve API erişimi | COMPLETED |
 | 2 | Search Console (domain property, DNS doğrulama, sitemap) | COMPLETED |
 | 3 | GA4 + çerez onayı (DSGVO/TDDDG) + dönüşüm event'leri | COMPLETED (canlıda, test edildi) |
-| 4 | Search Console ↔ GA4 bağlantısı | WAITING_FOR_USER (manuel UI) |
+| 4 | Search Console ↔ GA4 bağlantısı | COMPLETED |
 | 5 | Teknik SEO ve Almanca içerik | COMPLETED (canlıda) |
 | 6 | Google Business Profile | BLOCKED (ertelendi – uygunluk kullanıcıyla netleşmeli) |
 | 7 | Google Ads hazırlığı (harcama yok) | COMPLETED (taslak: `GOOGLE_ADS_PLAN.md`) |
@@ -174,8 +174,11 @@
 ---
 
 ## Faz 4 – Search Console ↔ GA4
-- **Durum:** NOT_STARTED
-- Admin API bu bağlantıyı desteklemiyor → GA4 arayüzünde: Verwaltung → Produktverknüpfungen → Search Console-Verknüpfungen. GA4 açıldıktan sonra.
+- **Durum:** COMPLETED (2026-10-22)
+- **Yapılan işlem:** Kullanıcı önce `snackora.de` domain mülkünü kendi Search Console'una ekledi ("Sahiplik otomatik olarak doğrulandı" çünkü SA tarafından devredilmiş sahiplik). Ardından GA4 → Yönetici → Ürün bağlantıları → Search Console bağlantıları → `snackora.de` (alan adı) ↔ web stream `https://snackora.de`.
+- **Test sonucu:** GA4 arayüzü "BAĞLANTI OLUŞTURULDU" gösterdi (kullanıcının ekran görüntüsü). Admin API bu bağlantıyı listeleyemediği için API ile doğrulanamıyor.
+- **Veri gecikmesi:** Search Console verileri GA4'te ~48 saat sonra görünür. Raporlar ancak Google sayfaları indeksleyip gösterim oluştuğunda dolar.
+- **Açık nokta (isteğe bağlı):** info@ sahipliği SA'nın DNS doğrulamasına bağlı ("Bilinmiyor"). Bağımsız olsun istenirse Search Console → Ayarlar → Sahipliği doğrulama → info@ için ikinci bir TXT kaydı.
 
 ---
 
@@ -188,7 +191,11 @@
   - Meta description: ana sayfa 178 → 156, Für Unternehmen 180 → 142 karakter (Waiblingen eklendi)
   - `/automaten` title kısaltıldı, `/ueber-uns` title'daki çift "Snackora" kaldırıldı
 - **Bilerek yapılmayanlar:** Sahte yerel sayfalar, LocalBusiness şeması (açık adres/çalışma saati yok), rating/review, "kostenlos/24h" vaatleri.
-- **Açık nokta:** Lighthouse/Core Web Vitals ölçümü bu oturumda yapılmadı (deploy sonrası PageSpeed Insights ile bakılmalı).
+- **Lighthouse (PageSpeed Insights API, canlı, deploy sonrası 2026-10-22):**
+  - Mobil: Performance **95**, Accessibility **100**, Best Practices **100**, SEO **100** · LCP 2,7 s · CLS 0 · TBT 30 ms · FCP 1,4 s
+  - Desktop: Performance **100**, Accessibility **96**, Best Practices **100**, SEO **100** · LCP 0,7 s · CLS 0
+  - CrUX saha verisi: henüz yok (trafik az)
+  - **İyileştirme önerileri (yapılmadı):** mobil LCP'yi 2,5 s altına indirmek (hero görseli: "Improve image delivery", "LCP request discovery"), desktop'ta bir yerde yetersiz renk kontrastı, "Legacy JavaScript / unused JS" (Next.js varsayılanları)
 
 ---
 
