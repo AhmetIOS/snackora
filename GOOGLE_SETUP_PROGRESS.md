@@ -11,14 +11,14 @@
 | 0 | Proje ve erişim analizi | COMPLETED |
 | 1 | Google Cloud ve API erişimi | COMPLETED |
 | 2 | Search Console (domain property, DNS doğrulama, sitemap) | COMPLETED |
-| 3 | GA4 + çerez onayı (DSGVO/TDDDG) + dönüşüm event'leri | WAITING_FOR_USER (GA4 yapılandırıldı; deploy onayı bekleniyor) |
-| 4 | Search Console ↔ GA4 bağlantısı | NOT_STARTED (GA4'ten sonra, manuel UI) |
-| 5 | Teknik SEO ve Almanca içerik | COMPLETED (branch'te, deploy bekliyor) |
+| 3 | GA4 + çerez onayı (DSGVO/TDDDG) + dönüşüm event'leri | COMPLETED (canlıda, test edildi) |
+| 4 | Search Console ↔ GA4 bağlantısı | WAITING_FOR_USER (manuel UI) |
+| 5 | Teknik SEO ve Almanca içerik | COMPLETED (canlıda) |
 | 6 | Google Business Profile | BLOCKED (ertelendi – uygunluk kullanıcıyla netleşmeli) |
 | 7 | Google Ads hazırlığı (harcama yok) | COMPLETED (taslak: `GOOGLE_ADS_PLAN.md`) |
 | 8 | Otomatik raporlama | COMPLETED (`npm run report:google`) |
 
-**Kod branch'i:** `feat/google-analytics-consent` (commit'lendi, push/deploy **yapılmadı**)
+**Deploy:** PR #4 → `main` (`c5bb8ff`), Vercel Production Ready (2026-10-22 00:22). `NEXT_PUBLIC_GA_MEASUREMENT_ID` sadece Production'da.
 
 ---
 
@@ -133,7 +133,16 @@
 - Custom dimensions (event): `form_name` "Formular", `lead_type` "Anfrageart", `link_location` "Link Seite" ✔
 - Enhanced measurement: açık, `pageChanges` açık (SPA page_view) ✔, **form interactions kapalı** (butona basınca `form_submit` gönderiyordu, başarılı gönderimden bağımsız) ✔
 - GA ID yerel `.env.vercel.local`'a eklendi (git-ignored). Vercel'e **henüz gönderilmedi**.
-- **Sonraki adım:** Kullanıcı onayı → Vercel Production env + merge/deploy → canlı test (Realtime/DebugView)
+- **Sonraki adım:** ✔ yapıldı (bkz. 3.7)
+
+### 3.7 Canlı test (production, 2026-10-22)
+- **Durum:** COMPLETED
+- Reddet: banner görünüyor, Google'a **0** istek, cookie yok, konsol hatası yok ✔
+- Kabul: gtag.js 1 kez, `_ga` + `_ga_E84G7MZFH5` cookie'leri, her sayfa geçişinde tam 1 `page_view` (/, /automaten, /faq) ✔
+- Geri çekme (footer → Cookie-Einstellungen): `_ga*` cookie'leri silindi, sonrasında Google'a 0 istek ✔
+- Form (API mock'lanarak, gerçek e-posta ya da GA verisi oluşturulmadan): `generate_lead {form_name: anfrage, lead_type: standort}`, `standortanfrage_submit`, `click_email` → her biri tam 1 kez, PII yok ✔
+- GA4 Realtime API: page_view 7, session_start 4, first_visit 4 (test ziyaretleri) ✔
+- `/api/inquiry` geçersiz istek → 403 (değişmedi), sayfalar 200, DNS değişmedi ✔
 
 ### 3.2 Çerez onayı (consent banner)
 - **Durum:** COMPLETED (kodda)
