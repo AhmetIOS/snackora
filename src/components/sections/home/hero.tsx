@@ -71,7 +71,7 @@ export function HomeHero() {
   return (
     <section aria-labelledby="hero-title" className="relative overflow-hidden [--floor-h:4rem]">
       <h1 id="hero-title" className="sr-only">
-        {hero.headline.join(" ")}
+        {hero.seoHeadline}: {hero.headline.join(" ")}
       </h1>
       {/* ── desktop: one full-bleed room. The floor line IS the layout line above the feature row. ── */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 hidden lg:block">

@@ -10,7 +10,7 @@ import { SlotLabel } from "@/components/ui/slot-label";
 import { pageMetadata } from "@/lib/seo/metadata";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Automatenlösungen: Snack-, Getränke-, Kaffee- & Kombiautomaten",
+  title: "Snack-, Getränke-, Kaffee- & Kombiautomaten im Überblick",
   description:
     "Snackautomaten, Getränkeautomaten und Kombiautomaten für Unternehmen und Standorte in Esslingen, Stuttgart und Umgebung – welcher Automat passt zu Ihnen?",
   path: "/automaten",
