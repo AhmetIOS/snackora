@@ -1,7 +1,7 @@
 import { business, isEmailActive } from "@/config/business";
-import { siteUrl } from "@/config/site";
+import { siteConfig, siteUrl } from "@/config/site";
 import type { Faq } from "@/content/faqs";
-import type { MachineCategory } from "@/content/machines";
+import { machines, type MachineCategory } from "@/content/machines";
 
 /**
  * schema.org structured data. Only truthful, verifiable facts:
@@ -43,6 +43,28 @@ export function organizationJsonLd(): Json {
     ...(business.phone ? { telephone: business.phone } : {}),
     areaServed: business.serviceRegion.cities.map((name) => ({ "@type": "City", name })),
     knowsAbout: ["Snackautomaten", "Getränkeautomaten", "Kombiautomaten", "Kaffeeautomaten", "Automatenaufstellung"],
+    description: siteConfig.description,
+    ...(isEmailActive
+      ? {
+          contactPoint: {
+            "@type": "ContactPoint",
+            contactType: "customer service",
+            email: business.email.address,
+            url: `${siteUrl}/kontakt`,
+            availableLanguage: "de",
+            areaServed: "DE",
+          },
+        }
+      : {}),
+    // The services as offered on the site – no prices, models or capacities are claimed.
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: "Automatenlösungen",
+      itemListElement: machines.map((m) => ({
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: m.name, description: m.teaser, url: `${siteUrl}/automaten/${m.slug}` },
+      })),
+    },
   };
 }
 
