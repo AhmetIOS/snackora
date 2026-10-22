@@ -39,6 +39,6 @@ export default defineConfig({
     url: baseURL,
     timeout: 300_000,
     reuseExistingServer: !process.env.CI,
-    env: { RESEND_API_KEY: "", NEXT_PUBLIC_SITE_URL: "https://snackora.de", NEXT_PUBLIC_GA_MEASUREMENT_ID: E2E_GA_ID },
+    env: { RESEND_API_KEY: "", NEXT_PUBLIC_SITE_URL: "https://snackora.de", NEXT_PUBLIC_GA_MEASUREMENT_ID: E2E_GA_ID, ADMIN_PASSWORD: "e2e-admin-password", ADMIN_SESSION_SECRET: "e2e-session-secret-0123456789abcdef" },
   },
 });

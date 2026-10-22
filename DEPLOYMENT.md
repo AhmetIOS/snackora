@@ -44,6 +44,7 @@ Vercel → Project → **Settings → Environment Variables**. Set them for *Pro
 | `AUTO_REPLY_ENABLED` | `false` at first, `true` once delivery is tested |
 | `UPSTASH_REDIS_REST_URL` / `UPSTASH_REDIS_REST_TOKEN` | from Upstash (section 6) |
 | `RATE_LIMIT_SALT` | any long random string, e.g. `openssl rand -hex 32` |
+| `ADMIN_PASSWORD` / `ADMIN_SESSION_SECRET` | Login for `/admin` (statistics dashboard) and the cookie signing secret (`openssl rand -hex 32`). Production only, *Sensitive*. Changing either logs everyone out. |
 | `NEXT_PUBLIC_GA_MEASUREMENT_ID` | `G-…` from GA4 → Admin → Data streams. **Production only** – never in Preview/Development, so test traffic stays out of the statistics. Empty = no analytics, no consent banner. |
 
 *Alternative without Resend (Zoho SMTP, paid Zoho plan only):* leave `RESEND_API_KEY` empty and set `SMTP_HOST=smtppro.zoho.eu`, `SMTP_PORT=465`, `SMTP_USER=kontakt@snackora.de`, `SMTP_PASSWORD=<Zoho app-specific password>`, `EMAIL_FROM=Snackora Website <kontakt@snackora.de>`. Then set `emailDelivery: "smtp"` in `src/config/business.ts` so the privacy policy matches.

@@ -54,6 +54,11 @@ const securityHeaders = [
 const nextConfig: NextConfig = {
   cacheComponents: true,
   partialPrefetching: true,
+  experimental: {
+    // Tailwind CSS is small: inlining it removes the render-blocking stylesheet request
+    // (mostly first-time visitors – B2B leads – so there is little cache benefit to lose).
+    inlineCss: true,
+  },
   poweredByHeader: false,
   turbopack: {
     // Pin the root: a stray lockfile in a parent directory must not change module resolution.
@@ -69,6 +74,14 @@ const nextConfig: NextConfig = {
     return [
       { source: "/:path*", headers: securityHeaders },
       { source: "/api/:path*", headers: [{ key: "X-Robots-Tag", value: "noindex" }] },
+      {
+        source: "/admin/:path*",
+        headers: [
+          { key: "X-Robots-Tag", value: "noindex, nofollow" },
+          { key: "Cache-Control", value: "private, no-store" },
+        ],
+      },
+      { source: "/admin", headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }, { key: "Cache-Control", value: "private, no-store" }] },
       {
         source: "/brand/:file*",
         headers: [{ key: "Cache-Control", value: "public, max-age=86400, stale-while-revalidate=604800" }],

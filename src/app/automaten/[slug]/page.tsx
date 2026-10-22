@@ -6,7 +6,7 @@ import { ArrowUpRight, Check } from "lucide-react";
 import { machinePhotos } from "@/content/media";
 import { getMachine, machines } from "@/content/machines";
 import { PhotoFigure } from "@/components/ui/photo-figure";
-import { MachineIllustration } from "@/components/illustrations/machines";
+import { MachineImage } from "@/components/illustrations/machine-image";
 import { CtaBand } from "@/components/sections/cta-band";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { ButtonLink } from "@/components/ui/button";
@@ -89,7 +89,7 @@ async function MachinePageContent({ params }: { params: Promise<{ slug: string }
             <figure className="relative mx-auto w-full max-w-sm lg:col-span-5 lg:max-w-none">
               <div className="relative mx-auto aspect-[400/760] w-[min(64vw,16rem)] sm:w-[18rem] lg:w-[20rem]">
                 <div className="absolute inset-x-[-12%] bottom-0 h-[48%] rounded-t-[1.5rem] bg-lime/90" aria-hidden="true" />
-                <MachineIllustration kind={m.illustration} className="relative z-10 h-auto w-full drop-shadow-[0_24px_30px_rgb(14_26_20/0.25)]" />
+                <MachineImage kind={m.illustration} preload alt={`Illustration: ${m.name} von Snackora (Designkonzept)`} className="relative z-10 h-auto w-full drop-shadow-[0_24px_30px_rgb(14_26_20/0.25)]" />
               </div>
             </figure>
             )}

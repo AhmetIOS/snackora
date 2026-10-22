@@ -5,7 +5,8 @@ import { useEffect, useId, useRef, useState } from "react";
 import { Cookie } from "lucide-react";
 import { analyticsEnabled } from "@/config/analytics";
 import { onOpenConsentSettings, setConsent } from "@/lib/consent/consent";
-import { useConsent } from "@/components/analytics/google-analytics";
+import { isUntrackedPath, useConsent } from "@/components/analytics/google-analytics";
+import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -44,7 +45,8 @@ function Banner() {
     [consent]
   );
 
-  const open = consent !== "unknown" && (consent === null || forcedOpen);
+  const untracked = isUntrackedPath(usePathname());
+  const open = !untracked && consent !== "unknown" && (consent === null || forcedOpen);
   if (!open) return null;
 
   const decide = (analytics: boolean) => {

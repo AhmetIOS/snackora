@@ -17,7 +17,7 @@ import { fileURLToPath } from "node:url";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const VERCEL = ["-y", "vercel@64.5.0"];
-const SECRETS = new Set(["RESEND_API_KEY", "UPSTASH_REDIS_REST_TOKEN", "RATE_LIMIT_SALT", "SMTP_PASSWORD"]);
+const SECRETS = new Set(["RESEND_API_KEY", "UPSTASH_REDIS_REST_TOKEN", "RATE_LIMIT_SALT", "SMTP_PASSWORD", "ADMIN_PASSWORD", "ADMIN_SESSION_SECRET"]);
 
 const args = process.argv.slice(2);
 const flag = (name) => args.includes(name);
