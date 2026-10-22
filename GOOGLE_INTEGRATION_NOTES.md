@@ -66,3 +66,20 @@ Nameserver: `ns11.domaincontrol.com`, `ns12.domaincontrol.com` (GoDaddy)
 - Data retention: 14 ay (`dataRetentionSettings`) – Datenschutz metni bu değeri söylüyor
 - Google Signals: kapalı (Datenschutz böyle söylüyor)
 - Internal traffic / developer traffic filtresi isteğe bağlı
+
+## /admin – istatistik paneli (Vercel'den anahtarsız Google erişimi)
+
+- Sayfa: `https://snackora.de/admin` – şifre `ADMIN_PASSWORD` (Vercel Production, Sensitive), oturum çerezi
+  `snackora_admin` (HttpOnly, Secure, SameSite=Strict, Path=/admin, 12 saat, `ADMIN_SESSION_SECRET` ile HMAC imzalı).
+- Giriş denemesi sınırı: IP başına 15 dakikada 10 (Upstash). noindex + robots.txt Disallow + `Cache-Control: private, no-store`.
+- Panel GA4'te **ölçülmez** (banner ve gtag `/admin`'de devre dışı).
+- **Google erişimi – Workload Identity Federation (anahtar dosyası yok):**
+  - Pool `vercel`, provider `snackora` (proje 524824191370)
+  - Issuer `https://oidc.vercel.com/ahmetios-projects`, audience `https://vercel.com/ahmetios-projects`
+  - Attribute condition: `assertion.sub == "owner:ahmetios-projects:project:snackora:environment:production"`
+    → sadece Production deploy'ları token alabilir (Development token'ı test edildi: reddedildi ✔)
+  - SA üzerinde `roles/iam.workloadIdentityUser` → sadece bu subject
+  - Akış: header `x-vercel-oidc-token` → `sts.googleapis.com` → `iamcredentials generateAccessToken` (SA, 1 saat)
+  - İstenen scope'lar sadece **readonly**: `analytics.readonly`, `webmasters.readonly`
+  - Kod: `src/lib/admin/google-auth.ts`, `src/lib/admin/analytics.ts`
+  - İptal: provider'ı devre dışı bırakmak → `gcloud iam workload-identity-pools providers disable snackora --location=global --workload-identity-pool=vercel`

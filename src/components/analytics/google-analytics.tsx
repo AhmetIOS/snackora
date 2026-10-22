@@ -1,6 +1,7 @@
 "use client";
 
 import Script from "next/script";
+import { usePathname } from "next/navigation";
 import { useEffect, useSyncExternalStore } from "react";
 import { gaMeasurementId } from "@/config/analytics";
 import { getConsent, subscribeConsent, type ConsentSnapshot } from "@/lib/consent/consent";
@@ -19,9 +20,13 @@ export function useConsent(): ConsentSnapshot {
  * measurement ("page changes based on browser history events"), so no
  * manual page_view is sent here – that would double-count.
  */
+/** The admin dashboard is never measured (own visits would distort the statistics). */
+export const isUntrackedPath = (path: string | null) => !!path && (path === "/admin" || path.startsWith("/admin/"));
+
 export function GoogleAnalytics() {
   const consent = useConsent();
-  const granted = consent !== "unknown" && consent?.analytics === true;
+  const untracked = isUntrackedPath(usePathname());
+  const granted = !untracked && consent !== "unknown" && consent?.analytics === true;
 
   useEffect(() => {
     if (!gaMeasurementId) return;

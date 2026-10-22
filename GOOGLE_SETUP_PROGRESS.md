@@ -210,3 +210,28 @@
 - **Durum:** COMPLETED
 - `npm run report:google [-- --days 7]` → Search Console + GA4 + teknik SEO → `reports/google-YYYY-MM-DD.md` (gitignore). Token anahtarsız, gcloud impersonation ile.
 - **Test:** çalıştırıldı ✔ (SC: henüz veri yok, sitemap okundu; GA4: property yok; SEO: 14 URL, sorun yok)
+
+---
+
+## Tur 2 (2026-10-22) – SEO raporu düzeltmeleri + /admin paneli
+
+**Branch:** `feat/seo-and-admin-dashboard` (merge kullanıcıda)
+
+### SEO / performans
+- **Durum:** COMPLETED (branch'te)
+- 4 otomat illüstrasyonu inline SVG yerine statik dosya (`public/illustrations/*.svg`, `npm run brand:illustrations`; yazılar marka fontlarıyla path'e çevrildi)
+  → DOM 2.284 → **955** düğüm, HTML ~576 → 420 KB (ham), brotli 45 → 41 KB
+- Hero fotoğrafı: `<picture>` + media'ya göre preload → her cihaz yalnızca **1** varyant indiriyor (önce 2)
+- `experimental.inlineCss` → render-blocking CSS isteği **0**
+- Fontlar sadece `latin` alt kümesi → 8 → **4** font isteği
+- `/llms.txt` (AI asistanları için, sitenin doğrulanmış içeriğinden üretiliyor)
+- Organization JSON-LD: `hasOfferCatalog` (4 hizmet) + `contactPoint`
+- **Bilerek düzeltilmeyen (yanlış alarm / bilinçli karar):** CDN (Vercel zaten CDN), "Google Analytics yok" (onaydan önce yüklenmiyor – DSGVO), düz e-posta adresi (iletişim adresi, gizlemek kullanılabilirliği bozar), ads.txt (reklam yok), robots Disallow (/api, /admin bilinçli), >20 istek (Next.js link prefetch'leri – navigasyonu hızlandırıyor), sahte referans/değerlendirme eklenmedi
+
+### /admin istatistik paneli
+- **Durum:** COMPLETED (branch'te; Vercel env hazır)
+- Şifre korumalı (`ADMIN_PASSWORD`, `ADMIN_SESSION_SECRET` Vercel Production'da, Sensitive), IP başına rate limit, noindex, GA'da ölçülmüyor
+- Veriler: kullanıcı/yeni kullanıcı/oturum/görüntüleme (+ önceki döneme göre %), günlük grafik, gerçek zamanlı, talepler (generate_lead vb.), kanallar, kaynak/araç, sayfalar, şehirler, cihazlar, Google aramaları (Search Console), anonim ziyaret günlüğü
+- Google erişimi: Vercel OIDC → Workload Identity Federation → SA (anahtar dosyası yok, sadece Production, sadece readonly scope)
+- **Test:** unit 59/59, e2e 75/75; yerelde gerçek GA4/SC verisiyle desktop+mobil kontrol edildi
+- **Canlı test:** merge + deploy sonrası yapılmalı (federation sadece production'da çalışır)
