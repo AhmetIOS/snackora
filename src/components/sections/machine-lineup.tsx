@@ -3,7 +3,7 @@ import { ArrowUpRight } from "lucide-react";
 import { machinePhotos } from "@/content/media";
 import { machines } from "@/content/machines";
 import Image from "next/image";
-import { MachineIllustration } from "@/components/illustrations/machines";
+import { MachineImage } from "@/components/illustrations/machine-image";
 import { ProductCluster } from "@/components/illustrations/products";
 import { SlotLabel } from "@/components/ui/slot-label";
 
@@ -67,9 +67,8 @@ export function MachineLineup({
                   ) : (
                     <>
                       {/* the machine itself – instantly readable as "Automat", also as a small thumbnail */}
-                      <MachineIllustration
+                      <MachineImage
                         kind={m.illustration}
-                        decorative
                         className="absolute top-1/2 left-1/2 h-[80%] w-auto -translate-x-1/2 -translate-y-1/2 transition-transform duration-500 ease-snap md:top-auto md:bottom-0 md:left-[10%] md:h-[90%] md:translate-x-0 md:translate-y-0 md:group-hover:-translate-y-1.5"
                       />
                       {/* desktop only: product still-life beside the machine */}

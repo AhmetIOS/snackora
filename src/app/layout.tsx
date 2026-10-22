@@ -10,20 +10,22 @@ import { ConsentBanner } from "@/components/consent/consent-banner";
 import "./globals.css";
 
 // Fonts are downloaded at build time and self-hosted by next/font –
-// no request to Google is made by visitors' browsers.
+// no request to Google is made by visitors' browsers. Only the "latin" subset
+// (covers German incl. ä ö ü ß €) is preloaded; add "latin-ext" if content
+// ever needs characters like ş or ł.
 const display = Bricolage_Grotesque({
-  subsets: ["latin", "latin-ext"],
+  subsets: ["latin"],
   axes: ["opsz"],
   variable: "--font-bricolage",
   display: "swap",
 });
 const sans = DM_Sans({
-  subsets: ["latin", "latin-ext"],
+  subsets: ["latin"],
   variable: "--font-dm-sans",
   display: "swap",
 });
 const mono = DM_Mono({
-  subsets: ["latin", "latin-ext"],
+  subsets: ["latin"],
   weight: ["400", "500"],
   variable: "--font-dm-mono",
   display: "swap",

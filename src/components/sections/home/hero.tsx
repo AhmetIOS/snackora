@@ -1,4 +1,5 @@
-import Image from "next/image";
+import { getImageProps } from "next/image";
+import { preload } from "react-dom";
 import { Coffee, Cookie, CupSoda, Handshake, type LucideIcon } from "lucide-react";
 import { hero, heroTags } from "@/content/home";
 import { heroPhoto } from "@/content/media";
@@ -54,7 +55,7 @@ function Machine() {
           className="absolute bottom-0 left-1/2 h-full -translate-x-1/2"
           style={{ aspectRatio: `${heroPhoto.width} / ${heroPhoto.height}` }}
         >
-          <Image src={heroPhoto.src} alt={heroPhoto.alt} fill preload sizes="(min-width: 1024px) 38vw, 80vw" className="object-contain" />
+          <HeroPhoto variant="desktop" className="object-contain" />
         </div>
       ) : (
         <AngledMachine animated className="absolute bottom-0 left-1/2 h-full w-auto -translate-x-1/2" />
@@ -64,6 +65,36 @@ function Machine() {
       <Tag {...heroTags[2]!} className="top-[8%] -right-[4%] xl:-right-[12%]" />
       <Tag {...heroTags[3]!} className="top-[64%] -right-[2%] xl:-right-[8%]" />
     </div>
+  );
+}
+
+/**
+ * Desktop and mobile show the photo in different layouts. Each <picture> swaps
+ * in a 1×1 placeholder for the other viewport, so a device downloads (and
+ * preloads) only the variant it actually displays.
+ */
+const HERO_SIZES = { desktop: "(min-width: 1024px) 38vw, 80vw", mobile: "(min-width: 640px) 50vw, 61vw" } as const;
+const MEDIA = { desktop: "(min-width: 1024px)", mobile: "(max-width: 1023.98px)" } as const;
+const BLANK = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
+
+function HeroPhoto({ variant, className }: { variant: keyof typeof MEDIA; className: string }) {
+  if (!heroPhoto) return null;
+  const { props } = getImageProps({
+    src: heroPhoto.src,
+    alt: heroPhoto.alt,
+    fill: true,
+    loading: "eager",
+    fetchPriority: "high",
+    sizes: HERO_SIZES[variant],
+    className,
+  });
+  preload(props.src, { as: "image", imageSrcSet: props.srcSet, imageSizes: props.sizes, fetchPriority: "high", media: MEDIA[variant] });
+  const other = variant === "desktop" ? MEDIA.mobile : MEDIA.desktop;
+  return (
+    <picture>
+      <source media={other} srcSet={BLANK} />
+      <img {...props} alt={props.alt} />
+    </picture>
   );
 }
 
@@ -131,7 +162,7 @@ export function HomeHero() {
               />
               {heroPhoto ? (
                 <div className="relative ml-auto w-[122%] -mr-[16%] sm:mr-0 sm:w-[104%]" style={{ aspectRatio: `${heroPhoto.width} / ${heroPhoto.height}` }}>
-                  <Image src={heroPhoto.src} alt={heroPhoto.alt} fill preload sizes="(min-width: 640px) 50vw, 55vw" className="object-contain object-bottom drop-shadow-[0_18px_24px_rgb(14_26_20/0.22)]" />
+                  <HeroPhoto variant="mobile" className="object-contain object-bottom drop-shadow-[0_18px_24px_rgb(14_26_20/0.22)]" />
                 </div>
               ) : (
                 <AngledMachine animated className="relative ml-auto h-auto w-[122%] -mr-[16%] sm:mr-0 sm:w-full" />
