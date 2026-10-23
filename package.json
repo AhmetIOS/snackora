@@ -17,7 +17,8 @@
     "brand:social": "node scripts/brand/build-social.mjs",
     "brand:illustrations": "node scripts/brand/render-illustrations.mjs",
     "env:push": "node scripts/env-push.mjs",
-    "report:google": "node scripts/google-report.mjs"
+    "report:google": "node scripts/google-report.mjs",
+    "report:keywords": "node scripts/keyword-report.mts"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.9.2",

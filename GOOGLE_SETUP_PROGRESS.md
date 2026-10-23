@@ -235,3 +235,19 @@
 - Google erişimi: Vercel OIDC → Workload Identity Federation → SA (anahtar dosyası yok, sadece Production, sadece readonly scope)
 - **Test:** unit 59/59, e2e 75/75; yerelde gerçek GA4/SC verisiyle desktop+mobil kontrol edildi
 - **Canlı test:** merge + deploy sonrası yapılmalı (federation sadece production'da çalışır)
+
+---
+
+## Tur 3 (2026-10-22) – Keyword analizi + `npm run report:keywords`
+
+- **Durum:** COMPLETED (branch'te, commit edilmedi)
+- **Komut:** `npm run report:keywords [-- --periods 7,28,90 --country deu|all --no-inspect]` → `reports/google-keywords.md` + `.csv` (gitignore). `report:google` değişmedi.
+  - Search Console: 7/28/90 gün, ülke filtresi (varsayılan DEU), query / query×device / query×page / page, `startRow` ile sayfalama, `dataState: all`; anonim gösterimler ayrıca hesaplanıyor; marka/marka dışı, kategori A–D, şehir, pozisyon grupları, ilk 10, 8–20 fırsatları, düşük CTR, hedef keyword tablosu; URL Inspection ile indeks durumu.
+  - gcloud: `CLOUDSDK_PYTHON` yoksa uv Python 3.1x otomatik bulunuyor (non-interactive shell'de `report:google` bu yüzden token alamıyor).
+  - Test: unit 70/70 (11 yeni), typecheck ✔, lint ✔, canlı çalıştırıldı ✔
+- **Gerçek veri (2026-10-22):** ilk gösterim 2026-10-20. DEU: 5 gösterim, 1 tıklama, Ø poz. 1,0 (desktop 4 / mobil 1). Sorgu satırı **0** (hepsi anonim) → hiçbir hedef keyword için veri yok.
+- **İndeks:** 2/14 (`/`, `/ueber-uns`). 4 "Gefunden – nicht indexiert", 8 "Google nicht bekannt" (`/fuer-unternehmen`, `/standort-anbieten`, `/automaten/*` dahil). Gösterimlerin bir kısmı `http://snackora.de/` URL'sine yazılmış (308 doğru çalışıyor; takip).
+- **Yan gözlem:** GA4'te 2026-10-22 tarihinde landing page `/admin` ile 2 oturum var (kod `/admin`'i ölçmemeli) → kontrol edilmeli.
+- **İndeksleme talepleri (Search Console UI, info@):** 2026-10-23 `/fuer-unternehmen` ✔ ("Dizine eklenmesi istendi"; durum önce "Keşfedildi – dizine eklenmemiş"), `/standort-anbieten`, `/automaten/snackautomaten`, `/automaten/getraenkeautomaten`, `/automaten/kombiautomaten`, `/anfrage` ✔, `/automaten`, `/automaten/kaffeeautomaten`, `/faq` ✔ (toplam 9). Impressum/Datenschutz/Kontakt bilerek istenmedi.
+- **Kontrol 2026-10-23 akşam (API):** indexli **7/14**: `/`, `/ueber-uns`, `/fuer-unternehmen`, `/standort-anbieten`, `/automaten/getraenkeautomaten`, `/automaten/kombiautomaten`, `/anfrage`. "Gecrawlt – zurzeit nicht indexiert": `/automaten`, `/automaten/snackautomaten`. API'de henüz "nicht bekannt": `/automaten/kaffeeautomaten`, `/faq` (istek az önce yapıldı). SC sahipliği, sitemap (0 hata), robots, DNS doğrulama TXT, GA4 veri akışı ✔.
+- **report:keywords 2026-10-23 20:55:** indexli **11/14** (sadece `/kontakt`, `/impressum`, `/datenschutz` değil). 16–22.10 DEU: 9 gösterim, 1 tıklama, Ø poz. 7,0. İlk görünen sorgu: "getränkeautomaten esslingen am neckar" – 1 gösterim, desktop, Ø poz. 54, URL `http://snackora.de/`. Düzeltme: "Seiten" tablosu artık ülke filtresiz (filtre anonim sorgu verisini düşürüyordu).
