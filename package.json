@@ -18,7 +18,9 @@
     "brand:illustrations": "node scripts/brand/render-illustrations.mjs",
     "env:push": "node scripts/env-push.mjs",
     "report:google": "node scripts/google-report.mjs",
-    "report:keywords": "node scripts/keyword-report.mts"
+    "report:keywords": "node scripts/keyword-report.mts",
+    "report:ads": "node scripts/ads/report.mts",
+    "ads:create-markttest": "node scripts/ads/create-markttest.mts"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.9.2",

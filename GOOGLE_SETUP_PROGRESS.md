@@ -15,7 +15,7 @@
 | 4 | Search Console ↔ GA4 bağlantısı | COMPLETED |
 | 5 | Teknik SEO ve Almanca içerik | COMPLETED (canlıda) |
 | 6 | Google Business Profile | BLOCKED (ertelendi – uygunluk kullanıcıyla netleşmeli) |
-| 7 | Google Ads hazırlığı (harcama yok) | COMPLETED (taslak: `GOOGLE_ADS_PLAN.md`) |
+| 7 | Google Ads (hesap 380-990-5237, test hazırlığı) | IN_PROGRESS (`GOOGLE_ADS_PLAN.md`) |
 | 8 | Otomatik raporlama | COMPLETED (`npm run report:google`) |
 
 **Deploy:** PR #4 → `main` (`c5bb8ff`), Vercel Production Ready (2026-10-22 00:22). `NEXT_PUBLIC_GA_MEASUREMENT_ID` sadece Production'da.
@@ -204,7 +204,12 @@
 - Profil için doğrulanabilir bir işletme ve müşterilerle gerçek temas gerekiyor. Otomat henüz kurulmadıysa Google'ın kurallarına göre erken. Hizmet alanı işletmesi olarak (adres gizli) uygun olabilir. Önce: işletme aktif mi, ilk otomat kuruldu mu? → kullanıcıya sorulacak.
 
 ## Faz 7 – Google Ads
-- **Durum:** COMPLETED (taslak) → `GOOGLE_ADS_PLAN.md`. Hesap yok, harcama yok.
+- **Durum:** IN_PROGRESS → `GOOGLE_ADS_PLAN.md`
+- **2026-11-21:** Ads hesabı açıldı: **380-990-5237** "Snackora" (info@snackora.de), Almanya, Berlin saati, EUR. Ödeme profili: Mehtap Durmus · **Bireysel** (kullanıcının bilinçli kararı, MwSt eklenir), Mastercard. €450 kredi promosyonu görünüyor (yükümlülük yok).
+- Google etiketi (G-E84G7MZFH5) Ads'e **bağlanmadı** (consent banner / Datenschutz Ads'e hazır değil) → ölçüm UTM + form e-postaları.
+- **API erişimi (2026-11-21):** Cloud projede `googleads.googleapis.com` etkin, Explorer access onaylı (günde 2.880 işlem; Keyword Planner/fatura API'den kapalı). SA `snackora-integrations@…` Ads hesabında **Standart** kullanıcı. info@ hesabında 2SV açıldı (Cloud Console 05.11.2026'dan beri zorunlu). Script'ler: `scripts/ads/client.mts`, `scripts/ads/create-markttest.mts` (varsayılan validateOnly, `--apply` ile oluşturur, her zaman PAUSED).
+- **Kampanya `markttest-1` (id 24524665086) – ENABLED 2026-11-21, kullanıcı onayıyla.** Search, manuel TBM maks. 0,50 €, günlük 7 €, 21.11.–27.11.2026 (her gün 07–19, 7 gün, bitişte otomatik durur; kullanıcı bugünden başlatmak istedi), Stuttgart + LK Esslingen + Rems-Murr (Präsenz), Almanca, 14 keyword / 2 grup, 60 negatif, 2 RSA (incelemede), UTM `markttest-1`. Display/Partner/otomatik metin kapalı, otomatik öneri aboneliği yok. Önceki iki taslak (0 € harcama) bütçe türü değişikliği için silindi.
+- **Sonraki adım:** `npm run report:ads` (günlük analiz) · Salı akşamı ilk teklif değerlendirmesi (her değişiklik kullanıcı onayıyla) · isteğe bağlı /admin reklam bölümü.
 
 ## Faz 8 – Raporlama
 - **Durum:** COMPLETED
