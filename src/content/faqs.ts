@@ -83,8 +83,8 @@ export const faqs: Faq[] = [
     id: "kosten",
     question: "Ist eine Automatenaufstellung kostenlos?",
     answer: [
-      "Das lässt sich nicht pauschal beantworten. Ob für Sie Kosten entstehen, hängt vor allem vom Standort, der zu erwartenden Nachfrage, dem Gerät und dem vereinbarten Betreibermodell ab.",
-      "Je nach Standort und Vereinbarung sind unterschiedliche Modelle denkbar. Wir prüfen gemeinsam, welche Lösung wirtschaftlich und organisatorisch sinnvoll ist, und besprechen die Konditionen transparent, bevor etwas vereinbart wird.",
+      "Ja – für geeignete Standorte stellen wir den Automaten kostenlos auf. Wir stellen das Gerät, befüllen es und kümmern uns um Reinigung und Service. Sie stellen den Platz und einen Stromanschluss zur Verfügung.",
+      "Ob ein Standort geeignet ist, hängt vor allem davon ab, wie viele Menschen regelmäßig vor Ort sind. Das prüfen wir gemeinsam mit Ihnen, bevor etwas vereinbart wird.",
     ],
     home: true,
     business: true,
@@ -93,8 +93,8 @@ export const faqs: Faq[] = [
     id: "befuellung",
     question: "Wer übernimmt Befüllung und Wartung?",
     answer: [
-      "Wer Befüllung, Reinigung und Wartung übernimmt, wird im jeweiligen Betreibermodell festgelegt. Unser Ziel ist eine Lösung, bei der Sie als Standortgeber möglichst wenig Aufwand haben.",
-      "Wie Befüllung und Service konkret organisiert werden – etwa Rhythmus und Ansprechpartner bei Störungen –, klären wir vor der Aufstellung verbindlich miteinander.",
+      "Das übernehmen wir: Befüllung, Reinigung und Wartung des Automaten liegen bei Snackora. Sie als Standortgeber haben damit keinen Aufwand.",
+      "Wie Befüllung und Service konkret organisiert werden – etwa Rhythmus, Zugangszeiten und Ansprechpartner bei Störungen –, klären wir vor der Aufstellung verbindlich miteinander.",
     ],
     business: true,
   },
@@ -103,7 +103,7 @@ export const faqs: Faq[] = [
     question: "Wie läuft eine Anfrage ab?",
     answer: [
       "Sie senden uns über das Anfrageformular ein paar Eckdaten zu Ihrem Standort. Wir melden uns, um Bedarf, Platz und Rahmenbedingungen zu besprechen, und schauen uns den Standort bei Bedarf vor Ort an.",
-      "Passt alles zusammen, erarbeiten wir ein Konzept mit Gerät, Sortiment und Betreibermodell. Erst wenn Sie damit einverstanden sind, planen wir die Umsetzung gemeinsam. Die Anfrage selbst ist unverbindlich.",
+      "Passt alles zusammen, erarbeiten wir ein Konzept mit Gerät, Sortiment und Aufstellort. Erst wenn Sie damit einverstanden sind, planen wir die Umsetzung gemeinsam. Die Anfrage selbst ist unverbindlich.",
     ],
     business: true,
   },

@@ -14,7 +14,7 @@ import { pageMetadata } from "@/lib/seo/metadata";
 export const metadata: Metadata = pageMetadata({
   title: "Snackautomaten für Unternehmen in der Region Stuttgart",
   description:
-    "Automaten für Büros, Produktion, Logistik und Gewerbe in Esslingen, Waiblingen und der Region Stuttgart – individuell geplant. Jetzt anfragen.",
+    "Automaten für Büros, Produktion und Gewerbe in Esslingen, Waiblingen und der Region Stuttgart – kostenlos aufgestellt, Befüllung & Service durch uns.",
   path: "/fuer-unternehmen",
 });
 
@@ -78,9 +78,10 @@ const model = [
     tone: "bg-forest text-cream surface-dark",
     iconTone: "bg-lime text-ink",
     items: [
+      "Kostenlose Aufstellung des Automaten",
+      "Befüllung, Reinigung und Service durch uns",
       "Persönliche Abstimmung mit einem festen Ansprechpartner",
       "Ehrliche Einschätzung, ob sich ein Automat bei Ihnen lohnt",
-      "Transparente Konditionen, bevor etwas vereinbart wird",
       "Kurze Wege in der Region Stuttgart",
     ],
   },
@@ -93,7 +94,7 @@ const model = [
       "Prüfung Ihres Standorts und Ihres Bedarfs",
       "Konzept mit passender Gerätekategorie",
       "Sortimentsvorschlag für Ihre Zielgruppe",
-      "Planung von Aufstellung, Befüllung und Service",
+      "Den Automaten – aufgestellt, befüllt und gewartet",
     ],
   },
   {
@@ -102,10 +103,10 @@ const model = [
     tone: "bg-sand",
     iconTone: "bg-ink text-lime",
     items: [
-      "Betreibermodell und Kostenverteilung",
+      "Aufstellort und Gerätekategorie",
       "Befüllrhythmus und Ablauf bei Störungen",
       "Laufzeit der Vereinbarung",
-      "Etwaige Beteiligungs- oder Mietmodelle",
+      "Etwaige Umsatzbeteiligung",
     ],
   },
 ];
@@ -117,7 +118,7 @@ export default function FuerUnternehmenPage() {
         crumbs={[{ name: "Für Unternehmen", href: "/fuer-unternehmen" }]}
         eyebrow="Für Unternehmen"
         title={"Pausen\u00ADversorgung für Ihr Team – ohne Organisations\u00ADaufwand."}
-        lead="Snacks und gekühlte Getränke direkt im Betrieb: Wir planen mit Ihnen eine Automatenlösung, die zu Ihren Räumen, Arbeitszeiten und Mitarbeitenden passt – und vereinbaren alles Weitere transparent."
+        lead="Snacks und gekühlte Getränke direkt im Betrieb: Wir stellen den Automaten kostenlos auf, befüllen ihn und kümmern uns um den Service – abgestimmt auf Ihre Räume, Arbeitszeiten und Mitarbeitenden."
         aside={
           <div className="rounded-panel border border-line bg-paper p-7">
             <p className="slot-label text-muted">Diese Seite richtet sich an</p>
@@ -233,9 +234,8 @@ export default function FuerUnternehmenPage() {
               Klare Verhältnisse von Anfang an.
             </h2>
             <p className="mt-5 text-ink/75">
-              Je nach Standort und Vereinbarung sind unterschiedliche Betreibermodelle denkbar. Wir prüfen gemeinsam, welche Lösung
-              wirtschaftlich und organisatorisch sinnvoll ist – und trennen dabei sauber zwischen dem, was feststeht, und dem, was
-              wir miteinander vereinbaren.
+              Für geeignete Standorte ist die Aufstellung für Sie kostenlos: Wir stellen den Automaten, befüllen ihn und kümmern uns
+              um den Service. Was darüber hinaus zu klären ist, legen wir transparent fest, bevor etwas vereinbart wird.
             </p>
           </div>
           <ul className="mt-12 grid gap-4 lg:grid-cols-3">
@@ -257,8 +257,8 @@ export default function FuerUnternehmenPage() {
             ))}
           </ul>
           <p className="mt-6 text-sm text-muted">
-            Eine kostenlose Aufstellung oder eine Umsatzbeteiligung lässt sich nicht pauschal zusagen – beides hängt vom Standort und
-            von der Vereinbarung ab.
+            Ob ein Standort geeignet ist, hängt vor allem davon ab, wie viele Menschen regelmäßig vor Ort sind – das prüfen wir vorab
+            gemeinsam. Eine Umsatzbeteiligung lässt sich nicht pauschal zusagen.
           </p>
         </div>
       </section>

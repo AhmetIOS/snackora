@@ -3,15 +3,26 @@
  * copy can be edited without touching layout code.
  */
 
+/**
+ * Offer line shown above the header on every page. Confirmed by the owner
+ * (2026-11-22): installation is free for the business, Snackora operates the
+ * machine (filling, cleaning, service).
+ */
+export const announcement = {
+  text: "Kostenlose Aufstellung für Unternehmen – Befüllung und Service übernehmen wir.",
+  short: "Kostenlose Aufstellung · Befüllung & Service durch uns",
+  cta: { label: "Jetzt anfragen", href: "/anfrage?anliegen=unternehmen" },
+};
+
 export const hero = {
   eyebrow: "Snack-, Getränke- & Kaffeeautomaten",
   // Official slogan – do not replace.
   headline: ["Deine Pause.", "Jederzeit."],
   /** Descriptive part of the page's <h1> (read by search engines and screen readers before the slogan). */
   seoHeadline: "Snack- und Getränkeautomaten für Unternehmen in Esslingen, Waiblingen und der Region Stuttgart",
-  lead: "Moderne Snack-, Getränke- und Kaffeeautomaten für Unternehmen, Mitarbeitende und attraktive Standorte in der Region Stuttgart – individuell geplant und persönlich abgestimmt.",
+  lead: "Moderne Snack-, Getränke- und Kaffeeautomaten für Unternehmen und Standorte in der Region Stuttgart – kostenlos aufgestellt, individuell geplant und von uns befüllt und betreut.",
   /** Shorter version for the compact mobile hero. */
-  leadShort: "Snack-, Getränke- und Kaffeeautomaten für Unternehmen und Standorte in der Region Stuttgart – individuell geplant.",
+  leadShort: "Snack-, Getränke- und Kaffeeautomaten für Unternehmen in der Region Stuttgart – kostenlos aufgestellt und von uns betreut.",
   primaryCta: { label: "Automatenlösung anfragen", href: "/anfrage" },
   /** Short label for narrow layouts (mobile hero). */
   primaryCtaShort: "Jetzt anfragen",
@@ -24,7 +35,7 @@ export const heroTags = [
   { icon: "snacks", title: "Snacks & Riegel", text: "süß, herzhaft, bewusst" },
   { icon: "drinks", title: "Kalte Getränke", text: "gut gekühlt vor Ort" },
   { icon: "coffee", title: "Kaffee & Tee", text: "frisch auf Knopfdruck" },
-  { icon: "care", title: "Persönlich betreut", text: "aus der Region" },
+  { icon: "care", title: "Kostenlos aufgestellt", text: "Service durch uns" },
 ];
 
 
@@ -92,7 +103,7 @@ export const processSteps = [
   {
     code: "03",
     title: "Passendes Konzept entwickeln",
-    text: "Gerät, Sortiment und Betreibermodell werden auf Ihren Standort abgestimmt – mit offenen Karten bei den Konditionen.",
+    text: "Gerät, Sortiment und Aufstellort werden auf Ihren Standort abgestimmt. Die Aufstellung ist für Sie kostenlos – Befüllung und Service übernehmen wir.",
   },
   {
     code: "04",

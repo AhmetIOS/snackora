@@ -71,7 +71,7 @@ export default function AutomatenPage() {
         crumbs={[{ name: "Automaten", href: "/automaten" }]}
         eyebrow="Automatenlösungen"
         title="Der passende Automat für Ihren Standort."
-        lead="Snacks, gekühlte Getränke, frisch zubereiteter Kaffee oder Snacks und Getränke aus einem Gerät: Welche Lösung sinnvoll ist, hängt von Ihren Räumen, Ihren Arbeitszeiten und den Menschen vor Ort ab. Hier finden Sie einen ersten Überblick."
+        lead="Snacks, gekühlte Getränke, frisch zubereiteter Kaffee oder Snacks und Getränke aus einem Gerät: Welche Lösung sinnvoll ist, hängt von Ihren Räumen, Ihren Arbeitszeiten und den Menschen vor Ort ab. Hier finden Sie einen ersten Überblick. Für geeignete Standorte stellen wir jeden Automaten kostenlos auf und übernehmen Befüllung und Service."
       >
         <div className="flex flex-col gap-3 xs:flex-row">
           <ButtonLink href="/anfrage" size="lg">

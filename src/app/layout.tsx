@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Bricolage_Grotesque, DM_Mono, DM_Sans } from "next/font/google";
 import { business } from "@/config/business";
 import { siteConfig } from "@/config/site";
+import { AnnouncementBar } from "@/components/layout/announcement-bar";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { JsonLd, organizationJsonLd, websiteJsonLd } from "@/lib/seo/json-ld";
@@ -73,6 +74,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         >
           Zum Inhalt springen
         </a>
+        <AnnouncementBar />
         <Header />
         <main id="inhalt" tabIndex={-1} className="flex-1 outline-none">
           {children}
